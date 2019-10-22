@@ -9,21 +9,33 @@
 /* Begin PBXBuildFile section */
 		5BE0F489235CEE440026B2DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F488235CEE440026B2DD /* AppDelegate.swift */; };
 		5BE0F48B235CEE440026B2DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F48A235CEE440026B2DD /* SceneDelegate.swift */; };
-		5BE0F48D235CEE440026B2DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F48C235CEE440026B2DD /* ViewController.swift */; };
-		5BE0F490235CEE440026B2DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE0F48E235CEE440026B2DD /* Main.storyboard */; };
+		5BE0F48D235CEE440026B2DD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F48C235CEE440026B2DD /* MainViewController.swift */; };
 		5BE0F492235CEE470026B2DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE0F491235CEE470026B2DD /* Assets.xcassets */; };
 		5BE0F495235CEE470026B2DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE0F493235CEE470026B2DD /* LaunchScreen.storyboard */; };
+		5BE0F49D235CEF3E0026B2DD /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F49C235CEF3E0026B2DD /* LibraryViewController.swift */; };
+		5BE0F49F235CEF490026B2DD /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F49E235CEF490026B2DD /* DiscoveryViewController.swift */; };
+		5BE0F4A2235CF3E70026B2DD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F4A0235CF3E70026B2DD /* Song.swift */; };
+		5BE0F4A3235CF3E70026B2DD /* SongAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F4A1235CF3E70026B2DD /* SongAPI.swift */; };
+		5BE34FA1235D332E008B4587 /* SLOW DANCING IN THE DARK.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BE34F9E235D332D008B4587 /* SLOW DANCING IN THE DARK.mp3 */; };
+		5BE34FA2235D332E008B4587 /* HIGHEST IN THE ROOM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BE34F9F235D332D008B4587 /* HIGHEST IN THE ROOM.mp3 */; };
+		5BE34FA3235D332E008B4587 /* Love You Too Late.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BE34FA0235D332E008B4587 /* Love You Too Late.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5BE0F485235CEE440026B2DD /* BottomNavParWithCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BottomNavParWithCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE0F488235CEE440026B2DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BE0F48A235CEE440026B2DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5BE0F48C235CEE440026B2DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5BE0F48F235CEE440026B2DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5BE0F48C235CEE440026B2DD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5BE0F491235CEE470026B2DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BE0F494235CEE470026B2DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BE0F496235CEE470026B2DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BE0F49C235CEF3E0026B2DD /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		5BE0F49E235CEF490026B2DD /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
+		5BE0F4A0235CF3E70026B2DD /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		5BE0F4A1235CF3E70026B2DD /* SongAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAPI.swift; sourceTree = "<group>"; };
+		5BE34F9E235D332D008B4587 /* SLOW DANCING IN THE DARK.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SLOW DANCING IN THE DARK.mp3"; sourceTree = "<group>"; };
+		5BE34F9F235D332D008B4587 /* HIGHEST IN THE ROOM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "HIGHEST IN THE ROOM.mp3"; sourceTree = "<group>"; };
+		5BE34FA0235D332E008B4587 /* Love You Too Late.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Love You Too Late.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,29 @@
 		5BE0F487235CEE440026B2DD /* BottomNavParWithCard */ = {
 			isa = PBXGroup;
 			children = (
+				5BE34FA4235D334D008B4587 /* Songs */,
+				5BE0F4A0235CF3E70026B2DD /* Song.swift */,
+				5BE0F4A1235CF3E70026B2DD /* SongAPI.swift */,
 				5BE0F488235CEE440026B2DD /* AppDelegate.swift */,
 				5BE0F48A235CEE440026B2DD /* SceneDelegate.swift */,
-				5BE0F48C235CEE440026B2DD /* ViewController.swift */,
-				5BE0F48E235CEE440026B2DD /* Main.storyboard */,
+				5BE0F48C235CEE440026B2DD /* MainViewController.swift */,
 				5BE0F491235CEE470026B2DD /* Assets.xcassets */,
 				5BE0F493235CEE470026B2DD /* LaunchScreen.storyboard */,
 				5BE0F496235CEE470026B2DD /* Info.plist */,
+				5BE0F49C235CEF3E0026B2DD /* LibraryViewController.swift */,
+				5BE0F49E235CEF490026B2DD /* DiscoveryViewController.swift */,
 			);
 			path = BottomNavParWithCard;
+			sourceTree = "<group>";
+		};
+		5BE34FA4235D334D008B4587 /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				5BE34F9F235D332D008B4587 /* HIGHEST IN THE ROOM.mp3 */,
+				5BE34FA0235D332E008B4587 /* Love You Too Late.mp3 */,
+				5BE34F9E235D332D008B4587 /* SLOW DANCING IN THE DARK.mp3 */,
+			);
+			path = Songs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +151,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE34FA1235D332E008B4587 /* SLOW DANCING IN THE DARK.mp3 in Resources */,
 				5BE0F495235CEE470026B2DD /* LaunchScreen.storyboard in Resources */,
+				5BE34FA3235D332E008B4587 /* Love You Too Late.mp3 in Resources */,
+				5BE34FA2235D332E008B4587 /* HIGHEST IN THE ROOM.mp3 in Resources */,
 				5BE0F492235CEE470026B2DD /* Assets.xcassets in Resources */,
-				5BE0F490235CEE440026B2DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +166,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BE0F48D235CEE440026B2DD /* ViewController.swift in Sources */,
+				5BE0F4A2235CF3E70026B2DD /* Song.swift in Sources */,
+				5BE0F48D235CEE440026B2DD /* MainViewController.swift in Sources */,
 				5BE0F489235CEE440026B2DD /* AppDelegate.swift in Sources */,
+				5BE0F4A3235CF3E70026B2DD /* SongAPI.swift in Sources */,
+				5BE0F49D235CEF3E0026B2DD /* LibraryViewController.swift in Sources */,
 				5BE0F48B235CEE440026B2DD /* SceneDelegate.swift in Sources */,
+				5BE0F49F235CEF490026B2DD /* DiscoveryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5BE0F48E235CEE440026B2DD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5BE0F48F235CEE440026B2DD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5BE0F493235CEE470026B2DD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
