@@ -11,7 +11,7 @@ import AVKit
 import AVFoundation
 
 class DiscoveryViewController: UIViewController {
-    var player = AVQueuePlayer()
+    var player: AVQueuePlayer? = nil
     var songs = SongAPI.getSongs()
     var curSong: Song? = nil
     var originalCardCenter: CGPoint? = nil
@@ -87,14 +87,17 @@ class DiscoveryViewController: UIViewController {
         let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
         playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
         playButton.setImage(icon, for: .normal)
-//        MPMediaLibrary.requestAuthorization{ (status) in
-//            if (status == .authorized) {
-//                if (self.musicPlayer.nowPlayingItem == nil) {
-//                    self.musicPlayer.setQueue(with: .songs())
-//                }
-//                self.musicPlayer.play()
-//            }
-//        }
+        if let curSong = curSong {
+            if (player?.currentItem == nil) {
+                let filePath = Bundle.main.path(forResource: curSong.title, ofType: "mp3")
+                let fileURL = URL(fileURLWithPath: filePath!)
+                let avAsset = AVAsset(url: fileURL as URL)
+                let assetKeys = ["playable"]
+                var playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
+                player = AVQueuePlayer(items: [playerItem])
+            }
+            player!.play()
+        }
     }
     
     @objc private func handlePause() {
@@ -102,7 +105,7 @@ class DiscoveryViewController: UIViewController {
         let icon = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
         playButton.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
         playButton.setImage(icon, for: .normal)
-//        musicPlayer.pause()
+        player!.pause()
     }
     
     @objc private func handleHeart() {
@@ -112,6 +115,7 @@ class DiscoveryViewController: UIViewController {
     }
     
     func addCurSongToLibrary() {
+        print("Trying to add song")
         let libraryViewNavigationController = self.tabBarController?.viewControllers![1] as! UINavigationController
         let libraryViewController = libraryViewNavigationController.viewControllers[0] as! LibraryViewController
         if let curSong = curSong {
@@ -127,7 +131,7 @@ class DiscoveryViewController: UIViewController {
         attributedText.append(NSMutableAttributedString(string: "\n\(curSong?.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
         titleTextView.attributedText = attributedText
         titleTextView.textAlignment = .center
-        resetCard()
+        enterCard()
     }
 
     // The Pan Gesture
@@ -153,16 +157,20 @@ class DiscoveryViewController: UIViewController {
         
         if (panGesture.state == UIGestureRecognizer.State.ended) {
             if (cardView.center.x < 75) {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.cardView.center = CGPoint(x: self.view.frame.minX - 200, y: self.view.frame.maxY + 75)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.cardView.center = CGPoint(x: self.view.frame.minX - 50, y: self.view.frame.midY)
+                    self.cardView.alpha = 0
+                }, completion: { (true) in
+                    self.showNextSong()
                 })
-                self.addCurSongToLibrary()
-                self.showNextSong()
             } else if (cardView.center.x > (view.frame.width - 75)){
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.cardView.center = CGPoint(x: self.view.frame.minX + 200, y: self.view.frame.maxY + 75)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.cardView.center = CGPoint(x: self.view.frame.maxX + 50, y: self.view.frame.midY)
+                    self.cardView.alpha = 0
+                }, completion: { (true) in
+                    self.addCurSongToLibrary()
+                    self.showNextSong()
                 })
-                self.showNextSong()
             } else {
                 resetCard()
             }
@@ -172,12 +180,19 @@ class DiscoveryViewController: UIViewController {
     
     func resetCard() {
         UIView.animate(withDuration: 0.1, animations: {
-//            print("Using original card center: \(self.originalCardCenter!)")
-            self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 60)
+            self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
             self.cardView.alpha = 1
             self.cardView.transform = .identity
             self.thumbsImageView.alpha = 0
-            print(self.thumbsImageView.alpha)
+        })
+    }
+    
+    func enterCard() {
+        self.cardView.transform = .identity
+        self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
+        self.thumbsImageView.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            self.cardView.alpha = 1
         })
     }
     //Views
