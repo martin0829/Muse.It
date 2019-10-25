@@ -26,6 +26,7 @@ class DiscoveryViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Discovery"
         
+        print(songs)
         setupCardView()
         setupPlayControllerView()
         initPlayer()
@@ -193,7 +194,8 @@ class DiscoveryViewController: UIViewController {
     }
     
     func showNextSong() {
-        curSong = songs.popLast()
+        songs.removeFirst()
+        curSong = songs.first
         player?.advanceToNextItem()
         let image = UIImage(named: "\(curSong?.album ?? "")")
         albumImageView.image = image
