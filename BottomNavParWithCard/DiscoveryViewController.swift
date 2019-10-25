@@ -20,17 +20,127 @@ class DiscoveryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        curSong = songs.popLast()
+        view.addSubview(cardView)
+        view.addSubview(playControllerView)
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Discovery"
-        view.addSubview(cardView)
-        view.addSubview(playControllerView)
-    
+        
         setupCardView()
         setupPlayControllerView()
-//        originalCardCenter = CGPoint(x: 0, y: 0) TODO
-//        print("Original card center: \(originalCardCenter)")
+        initPlayer()
+    }
+    
+    func addCurSongToLibrary() {
+        print("Trying to add song to my library")
+        let libraryViewNavigationController = self.tabBarController?.viewControllers![1] as! UINavigationController
+        let libraryViewController = libraryViewNavigationController.viewControllers[0] as! LibraryViewController
+        if let curSong = curSong {
+            libraryViewController.addSong(curSong)
+        }
+    }
+    
+    // The Pan Gesture
+    func createPanGestureRecognizer(targetView: UIView) {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        targetView.addGestureRecognizer(panGesture)
+    }
+    
+    func enterCard() {
+        self.cardView.transform = .identity
+        self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
+        self.thumbsImageView.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            self.cardView.alpha = 1
+        })
+    }
+    
+    func initPlayer() {
+        var playerItems: [AVPlayerItem]? = []
+        for song in songs {
+            let filePath = Bundle.main.path(forResource: song.title, ofType: "mp3")
+            let fileURL = URL(fileURLWithPath: filePath!)
+            let avAsset = AVAsset(url: fileURL as URL)
+            let assetKeys = ["playable"]
+            let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
+            playerItems?.append(playerItem)
+        }
+        if let playerItems = playerItems {
+            player = AVQueuePlayer(items: playerItems)
+        } else {
+            print("No songs available!")
+        }
+    }
+    
+    @objc private func handleHeart() {
+        print("Trying to Heart")
+        addCurSongToLibrary()
+        showNextSong()
+    }
+    @objc private func handleDislike() {
+       print("Trying to Dislike")
+       showNextSong()
+   }
+    
+    @objc private func handlePanGesture(panGesture: UIPanGestureRecognizer) {
+        let point = panGesture.translation(in: cardView)
+        let xFromCenter = cardView.center.x - view.center.x
+        cardView.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
+        let divisor = (view.frame.width / 2) / 0.61
+        cardView.transform = CGAffineTransform(rotationAngle: xFromCenter / divisor)
+        
+        if xFromCenter > 5 {
+            self.thumbsImageView.image = #imageLiteral(resourceName: "thumbs_up")
+        } else if xFromCenter < -5 {
+            self.thumbsImageView.image = #imageLiteral(resourceName: "thumbs_down")
+        }
+        
+        thumbsImageView.alpha = abs(xFromCenter) / view.center.x
+        
+        if (panGesture.state == UIGestureRecognizer.State.ended) {
+            if (cardView.center.x < 75) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.cardView.center = CGPoint(x: self.view.frame.minX - 50, y: self.view.frame.midY)
+                    self.cardView.alpha = 0
+                }, completion: { (true) in
+                    self.handleDislike()
+                })
+            } else if (cardView.center.x > (view.frame.width - 75)){
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.cardView.center = CGPoint(x: self.view.frame.maxX + 50, y: self.view.frame.midY)
+                    self.cardView.alpha = 0
+                }, completion: { (true) in
+                    self.handleHeart()
+                })
+            } else {
+                resetCard()
+            }
+        }
+        
+    }
+    
+    @objc private func handlePause() {
+         print("Trying to pause")
+         let icon = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
+         playButton.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
+         playButton.setImage(icon, for: .normal)
+         player!.pause()
+    }
+    
+    @objc private func handlePlay() {
+        print("Trying to play")
+        let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
+        playButton.setImage(icon, for: .normal)
+        if (player?.currentItem != nil) {
+            player!.play()
+        } else {
+            print("Current player item is null!")
+        }
+    }
+    
+    func playNextSong() {
+        print("Trying to play next song")
     }
     
     private func setupCardView() {
@@ -82,49 +192,9 @@ class DiscoveryViewController: UIViewController {
         lengthLabel.bottomAnchor.constraint(equalTo: playControllerView.bottomAnchor, constant: -5).isActive = true
     }
     
-    @objc private func handlePlay() {
-        print("Trying to play")
-        let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
-        playButton.setImage(icon, for: .normal)
-        if let curSong = curSong {
-            if (player?.currentItem == nil) {
-                let filePath = Bundle.main.path(forResource: curSong.title, ofType: "mp3")
-                let fileURL = URL(fileURLWithPath: filePath!)
-                let avAsset = AVAsset(url: fileURL as URL)
-                let assetKeys = ["playable"]
-                var playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
-                player = AVQueuePlayer(items: [playerItem])
-            }
-            player!.play()
-        }
-    }
-    
-    @objc private func handlePause() {
-        print("Trying to pause")
-        let icon = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        playButton.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
-        playButton.setImage(icon, for: .normal)
-        player!.pause()
-    }
-    
-    @objc private func handleHeart() {
-        print("Trying to Heart")
-        addCurSongToLibrary()
-        showNextSong()
-    }
-    
-    func addCurSongToLibrary() {
-        print("Trying to add song")
-        let libraryViewNavigationController = self.tabBarController?.viewControllers![1] as! UINavigationController
-        let libraryViewController = libraryViewNavigationController.viewControllers[0] as! LibraryViewController
-        if let curSong = curSong {
-            libraryViewController.addSong(curSong)
-        }
-    }
-    
     func showNextSong() {
         curSong = songs.popLast()
+        player?.advanceToNextItem()
         let image = UIImage(named: "\(curSong?.album ?? "")")
         albumImageView.image = image
         let attributedText = NSMutableAttributedString(string: "\(curSong?.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
@@ -132,50 +202,7 @@ class DiscoveryViewController: UIViewController {
         titleTextView.attributedText = attributedText
         titleTextView.textAlignment = .center
         enterCard()
-    }
-
-    // The Pan Gesture
-    func createPanGestureRecognizer(targetView: UIView) {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        targetView.addGestureRecognizer(panGesture)
-    }
-    
-    @objc func handlePanGesture(panGesture: UIPanGestureRecognizer) {
-        let point = panGesture.translation(in: cardView)
-        let xFromCenter = cardView.center.x - view.center.x
-        cardView.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
-        let divisor = (view.frame.width / 2) / 0.61
-        cardView.transform = CGAffineTransform(rotationAngle: xFromCenter / divisor)
-        
-        if xFromCenter > 5 {
-            self.thumbsImageView.image = #imageLiteral(resourceName: "thumbs_up")
-        } else if xFromCenter < -5 {
-            self.thumbsImageView.image = #imageLiteral(resourceName: "thumbs_down")
-        }
-        
-        thumbsImageView.alpha = abs(xFromCenter) / view.center.x
-        
-        if (panGesture.state == UIGestureRecognizer.State.ended) {
-            if (cardView.center.x < 75) {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.cardView.center = CGPoint(x: self.view.frame.minX - 50, y: self.view.frame.midY)
-                    self.cardView.alpha = 0
-                }, completion: { (true) in
-                    self.showNextSong()
-                })
-            } else if (cardView.center.x > (view.frame.width - 75)){
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.cardView.center = CGPoint(x: self.view.frame.maxX + 50, y: self.view.frame.midY)
-                    self.cardView.alpha = 0
-                }, completion: { (true) in
-                    self.addCurSongToLibrary()
-                    self.showNextSong()
-                })
-            } else {
-                resetCard()
-            }
-        }
-        
+        handlePlay()
     }
     
     func resetCard() {
@@ -187,15 +214,7 @@ class DiscoveryViewController: UIViewController {
         })
     }
     
-    func enterCard() {
-        self.cardView.transform = .identity
-        self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
-        self.thumbsImageView.alpha = 0
-        UIView.animate(withDuration: 0.5, animations: {
-            self.cardView.alpha = 1
-        })
-    }
-    //Views
+    //----------------------- UI Elements --------------------------- //
     lazy var cardView: UIView = {
         let cardView = UIView()
         cardView.addSubview(thumbsImageView)
@@ -211,11 +230,17 @@ class DiscoveryViewController: UIViewController {
     }()
     
     lazy var albumImageView: UIImageView = {
-        let image = UIImage(named: "\(curSong?.album ?? "")")
-        let imageView = UIImageView(image: image)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+        curSong = songs.first
+        if let curSong = curSong {
+            let image = UIImage(named: "\(curSong.album ?? "")")
+            let imageView = UIImageView(image: image)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.contentMode = .scaleAspectFit
+            return imageView
+        } else {
+            print("Current song does not exist!")
+            return UIImageView()
+       }
     }()
     
     lazy var thumbsImageView: UIImageView = {
@@ -229,14 +254,12 @@ class DiscoveryViewController: UIViewController {
     
     lazy var titleTextView: UITextView = {
         let textView = UITextView(frame: CGRect(x: 100, y: 100, width: 500, height: 500))
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineSpacing = 5
         let attributedText = NSMutableAttributedString(string: "\(curSong?.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
         attributedText.append(NSMutableAttributedString(string: "\n\(curSong?.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
-//        attributedText.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedText.length))
         textView.attributedText = attributedText
         textView.textAlignment = .center
         textView.backgroundColor = .none
+        textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -244,19 +267,20 @@ class DiscoveryViewController: UIViewController {
     
     let heartButtonView: UIButton = {
         let green = UIColor(displayP3Red: 80/255, green: 200/255, blue: 120/255, alpha: 1.0)
-        let heart = UIImage(systemName: "heart.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(.green, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: "heart.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(.green, renderingMode: .alwaysOriginal)
         let button = UIButton()
-        button.setBackgroundImage(heart, for: .normal)
+        button.setBackgroundImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleHeart), for: .touchUpInside)
         return button
     }()
     
-    let hateButtonView: UIButton = {
-        let hate = UIImage(systemName: "heart.slash.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(.red, renderingMode: .alwaysOriginal)
+    let dislikeButtonView: UIButton = {
+        let image = UIImage(systemName: "heart.slash.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(.red, renderingMode: .alwaysOriginal)
         let button = UIButton()
-        button.setBackgroundImage(hate, for: .normal)
+        button.setBackgroundImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleDislike), for: .touchUpInside)
         return button
     }()
     
@@ -278,7 +302,7 @@ class DiscoveryViewController: UIViewController {
         stackView.alignment = .center
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(hateButtonView)
+        stackView.addArrangedSubview(dislikeButtonView)
         stackView.addArrangedSubview(heartButtonView)
         return stackView
     }()

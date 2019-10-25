@@ -10,6 +10,5 @@ struct Song {
     let title: String?
     let artist: String?
     let genre: String?
-    let url: String?
     let album: String?
 }
