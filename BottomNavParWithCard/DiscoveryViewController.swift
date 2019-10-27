@@ -71,6 +71,12 @@ class DiscoveryViewController: UIViewController {
         } else {
             print("No songs available!")
         }
+        let interval = CMTime(value: 1, timescale: 2)
+        player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
+            
+            let seconds = CMTimeGetSeconds(progressTime)
+            self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded()), Int(seconds.truncatingRemainder(dividingBy: 60)))
+        })
     }
     
     @objc private func handleHeart() {
@@ -140,6 +146,18 @@ class DiscoveryViewController: UIViewController {
         }
     }
     
+    @objc private func handleSlider() {
+        print("Trying to slide")
+        if let duration = player?.currentItem?.duration {
+            let totalSeconds = CMTimeGetSeconds(duration)
+            let value = Float64(slider.value) * totalSeconds
+            let seekTime = CMTime(value: Int64(value), timescale: 1)
+            player?.seek(to: seekTime, completionHandler: { (completedSeek)
+                in
+            })
+        }
+    }
+    
     func playNextSong() {
         print("Trying to play next song")
     }
@@ -182,10 +200,10 @@ class DiscoveryViewController: UIViewController {
         playButton.topAnchor.constraint(equalToSystemSpacingBelow: playControllerView.topAnchor, multiplier: 1).isActive = true
         
         // slider
-        videoSlider.widthAnchor.constraint(equalTo: playControllerView.widthAnchor, multiplier: 0.8).isActive = true
-        videoSlider.centerXAnchor.constraint(equalTo: playControllerView.centerXAnchor).isActive = true
-        videoSlider.topAnchor.constraint(greaterThanOrEqualTo: playButton.bottomAnchor, constant: 5).isActive = true
-        videoSlider.bottomAnchor.constraint(lessThanOrEqualTo: lengthLabel.bottomAnchor, constant: -10).isActive = true
+        slider.widthAnchor.constraint(equalTo: playControllerView.widthAnchor, multiplier: 0.8).isActive = true
+        slider.centerXAnchor.constraint(equalTo: playControllerView.centerXAnchor).isActive = true
+        slider.topAnchor.constraint(greaterThanOrEqualTo: playButton.bottomAnchor, constant: 5).isActive = true
+        slider.bottomAnchor.constraint(lessThanOrEqualTo: lengthLabel.bottomAnchor, constant: -10).isActive = true
 //        videoSlider.bottomAnchor.constraint(equalTo: lengthLabel.topAnchor).isActive = true
         
         //setup label
@@ -313,15 +331,17 @@ class DiscoveryViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(playButton)
-        view.addSubview(videoSlider)
+        view.addSubview(slider)
         view.addSubview(lengthLabel)
         view.layer.cornerRadius = 10.0
         return view
     }()
     
-    let videoSlider: UISlider = {
+    let slider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(handleSlider),
+                         for: .valueChanged)
         return slider
     }()
     
