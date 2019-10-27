@@ -51,7 +51,7 @@ class DiscoveryViewController: UIViewController {
         self.cardView.transform = .identity
         self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
         self.thumbsImageView.alpha = 0
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.cardView.alpha = 1
         })
     }
@@ -106,15 +106,15 @@ class DiscoveryViewController: UIViewController {
         
         if (panGesture.state == UIGestureRecognizer.State.ended) {
             if (cardView.center.x < 75) {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.cardView.center = CGPoint(x: self.view.frame.minX - 50, y: self.view.frame.midY)
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.cardView.center = CGPoint(x: self.view.frame.minX - 300, y: self.view.frame.midY)
                     self.cardView.alpha = 0
                 }, completion: { (true) in
                     self.handleDislike()
                 })
             } else if (cardView.center.x > (view.frame.width - 75)){
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.cardView.center = CGPoint(x: self.view.frame.maxX + 50, y: self.view.frame.midY)
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.cardView.center = CGPoint(x: self.view.frame.midX + 300, y: self.view.frame.midY)
                     self.cardView.alpha = 0
                 }, completion: { (true) in
                     self.handleHeart()
@@ -123,7 +123,7 @@ class DiscoveryViewController: UIViewController {
                 resetCard()
             }
         }
-        
+        print(cardView.center.x)
     }
     
     @objc private func handlePause() {
@@ -156,10 +156,6 @@ class DiscoveryViewController: UIViewController {
                 in
             })
         }
-    }
-    
-    func playNextSong() {
-        print("Trying to play next song")
     }
     
     private func setupCardView() {

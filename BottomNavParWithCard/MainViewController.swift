@@ -17,11 +17,11 @@ class MainViewController: UITabBarController {
     
     func setupTabBar() {
         tabBar.barTintColor = UIColor(red: 38/255, green: 196/255, blue: 133/255, alpha: 0.5)
-        let discoveryViewController = UINavigationController(rootViewController: DiscoveryViewController())
-        discoveryViewController.tabBarItem.image = UIImage(systemName: "music.note")
-        let libraryViewController = UINavigationController(rootViewController: LibraryViewController())
-        libraryViewController.tabBarItem.image = UIImage(systemName: "music.note.list")
-        viewControllers = [discoveryViewController, libraryViewController]
+        let discoveryNavigationViewController = UINavigationController(rootViewController: DiscoveryViewController())
+           discoveryNavigationViewController.tabBarItem.image = UIImage(systemName: "music.note")
+        let libraryNavigationViewController = UINavigationController(rootViewController: LibraryViewController())
+        libraryNavigationViewController.tabBarItem.image = UIImage(systemName: "music.note.list")
+        viewControllers = [discoveryNavigationViewController, libraryNavigationViewController]
     }
 
 }
