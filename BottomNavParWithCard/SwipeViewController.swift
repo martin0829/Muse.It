@@ -27,6 +27,7 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
         view?.backgroundColor = .white
         view.addSubview(scrollView)
         scrollView.delegate = self
+        scrollView.isUserInteractionEnabled = true
         setupScrollView()
         setupBottomControls()
     }
@@ -71,25 +72,16 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
     
     @objc private func handleNext() {
         let nextIndex: Int
-        if (pageControl.currentPage < pages.count - 1) {
-            nextIndex = pageControl.currentPage + 1
-        } else {
-            nextIndex = pageControl.currentPage
+        if (pageControl.currentPage >= pages.count - 1) {
+            return
         }
+        nextIndex = pageControl.currentPage + 1
         pageControl.currentPage = nextIndex
         changeArrowColor()
-        if (pageControl.currentPage == pages.count - 1) {
-            nextButton.addTarget(self, action: #selector(transitionToGenreSelection), for: .touchUpInside)
-        }
         var frame = scrollView.frame;
         frame.origin.x = frame.size.width * CGFloat(pageControl.currentPage);
         frame.origin.y = 0;
         scrollView.scrollRectToVisible(frame, animated: true)
-//        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-    }
-    
-    @objc func transitionToGenreSelection() {
-        self.view.window!.rootViewController = MainViewController()
     }
     
     func changeArrowColor() {

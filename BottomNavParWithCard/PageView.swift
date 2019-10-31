@@ -34,11 +34,91 @@ class PageView: UIViewController {
     }
     
     private func setupSpecialLayout() {
-        print("Setup Special Layout")
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        
+        let attributedText = NSMutableAttributedString(string: "Select your favorite genre\n\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 25), NSAttributedString.Key.paragraphStyle: style])
+        textView.attributedText = attributedText
+        view.addSubview(textView)
+        textView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        textView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        textView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.25).isActive = true
+        textView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        
+        let stackView = UIStackView()
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.spacing = 30
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 30).isActive = true
+        stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.25).isActive = true
+        
+        
+        
+        stackView.addArrangedSubview(popButton)
+        stackView.addArrangedSubview(hiphopButton)
+        stackView.addArrangedSubview(edmButton)
+        popButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
+//        popButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        hiphopButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
+//        hiphopButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        edmButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
+//        edmButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+    }
+
+    private let popButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Pop", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 5
+        button.addTarget(self, action: #selector(handlePopButton), for: .touchUpInside)
+        return button
+    }()
+
+    private let hiphopButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Hip Hop", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 5
+//        button.addTarget(self, action: #selector(handlePopButton), for: .touchUpInside)
+        return button
+    }()
+
+    private let edmButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("EDM", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 5
+//        button.addTarget(self, action: #selector(handlePopButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func handlePopButton() {
+        print("Handling pop button")
+        self.view.window!.rootViewController = MainViewController()
+        let options: UIView.AnimationOptions = .transitionCrossDissolve
+        UIView.transition(with: self.view.window!, duration: 0.5, options: options, animations: {}, completion: nil)
     }
     
     private func setupLayout() {
-        print("setupLayout")
         let topContainerView = UIView()
         view.addSubview(topContainerView)
         topContainerView.addSubview(imageView)
@@ -70,14 +150,6 @@ class PageView: UIViewController {
         descView.leftAnchor.constraint(equalTo: bottomContainerView.leftAnchor, constant: 30).isActive = true
         descView.rightAnchor.constraint(equalTo: bottomContainerView.rightAnchor, constant: -30).isActive = true
         descView.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 0.5).isActive = true
-//        setupButton()
-//        bottomContainerView.addSubview(button)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.topAnchor.constraint(equalTo: descView.bottomAnchor, constant: 30).isActive = true
-//        button.centerXAnchor.constraint(equalTo: bottomContainerView.centerXAnchor).isActive = true
-//        button.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
     }
     
     private let imageView: UIImageView = {
@@ -99,13 +171,4 @@ class PageView: UIViewController {
         textView.isScrollEnabled = false
         return textView
     }()
-    
-//    let button: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Let's Go!", for: .normal)
-//        button.layer.cornerRadius = 10
-//        button.backgroundColor = .red
-//        button.setTitleColor(.black, for: .normal)
-//        return button
-//    }()
 }
