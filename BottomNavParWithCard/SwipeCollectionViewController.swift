@@ -12,17 +12,28 @@ extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
 
+extension SwipeCollectionViewController: MyCustomCellDelegate {
+    func didPressButton() {
+        print("Button was pressed")
+    }
+}
+
 class SwipeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     let pages = [
-    Page(imageName: "cat", headerText: "Join us for fun and games!", bodyText: "Lorem Ipsum We like to play and dance and this is just me typing as quickly as possible as filler words."),
+    Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Quickly discover new music with by swiping left or right", hasButton: false),
+    Page(imageName: "fifteen", headerText: "Tired of listening to whole songs?", bodyText: "We curate the 15 seconds of the hottest part of the song for your convenience.", hasButton: false),
+    Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasButton: true),
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.isUserInteractionEnabled = true
+        view.isUserInteractionEnabled = true
         collectionView?.backgroundColor = .white
         collectionView?.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView.isPagingEnabled = true
         setupBottomControls()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -34,10 +45,29 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! PageCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? PageCollectionViewCell
+        cell?.delegate = self as MyCustomCellDelegate
+        cell?.isUserInteractionEnabled = true
+        cell?.contentView.isUserInteractionEnabled = true
         let page = pages[indexPath.item]
-        cell.page = page
-        return cell
+        
+//        if let cell = cell as? PageCollectionViewCell {
+//            cell.page = page
+//        } else {
+//            print("not a pageCollectionViewCell")
+//        }
+        cell!.page = page
+        return cell!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: view.frame.height)
+    }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let x = targetContentOffset.pointee.x
+        pageControl.currentPage = Int(x / view.frame.width)
+        changeArrowColor()
     }
     
     @objc private func handlePrev() {
@@ -48,6 +78,7 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
             nextIndex = pageControl.currentPage
         }
         pageControl.currentPage = nextIndex
+        changeArrowColor()
         let indexPath = IndexPath(item: nextIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
@@ -60,8 +91,22 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
             nextIndex = pageControl.currentPage
         }
         pageControl.currentPage = nextIndex
+        changeArrowColor()
         let indexPath = IndexPath(item: nextIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    func changeArrowColor() {
+        if (pageControl.currentPage > 0) {
+            prevButton.setTitleColor(.mainPink, for: .normal)
+        } else {
+            prevButton.setTitleColor(.gray, for: .normal)
+        }
+        if (pageControl.currentPage < pages.count - 1) {
+            nextButton.setTitleColor(.mainPink, for: .normal)
+        } else {
+            nextButton.setTitleColor(.gray, for: .normal)
+        }
     }
     
     private func setupBottomControls() {

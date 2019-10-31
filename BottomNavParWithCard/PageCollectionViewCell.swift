@@ -8,23 +8,30 @@
 
 import UIKit
 
-class PageCollectionViewCell: UICollectionViewCell {
+protocol MyCustomCellDelegate: class {
+    func didPressButton()
     
+}
+
+class PageCollectionViewCell: UICollectionViewCell {
+    weak var delegate: MyCustomCellDelegate?
+
     var page: Page? {
         didSet {
             guard let unwrappedPage = page else { return }
-            catImageView.image = UIImage(named: unwrappedPage.imageName)
-            let attributedText = NSMutableAttributedString(string: unwrappedPage.headerText, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 25)])
-            attributedText.append(NSMutableAttributedString(string: "\n\n\(unwrappedPage.bodyText)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
+            imageView.image = UIImage(named: unwrappedPage.imageName)
+            let attributedText = NSMutableAttributedString(string: unwrappedPage.headerText, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 35)])
+            attributedText.append(NSMutableAttributedString(string: "\n\n\(unwrappedPage.bodyText)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 25)]))
             descView.attributedText = attributedText
             descView.textAlignment = .center
-            
+//            if unwrappedPage.hasButton {
+//                setupButton()
+//            }
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
         setupLayout()
     }
     
@@ -32,9 +39,55 @@ class PageCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented ")
     }
     
-    private let catImageView: UIImageView = {
-        let catImage = UIImage(named: "cat")
-        let imageView = UIImageView.init(image: catImage)
+    private func setupButton() {
+        
+    }
+    
+    private func setupLayout() {
+        let topContainerView = UIView()
+        addSubview(topContainerView)
+        topContainerView.addSubview(imageView)
+        topContainerView.backgroundColor = .red
+        topContainerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        topContainerView.translatesAutoresizingMaskIntoConstraints = false
+        topContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier : 0.5).isActive = true
+        topContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        topContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        topContainerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        
+        imageView.widthAnchor.constraint(equalTo: topContainerView.widthAnchor, multiplier: 0.5).isActive = true
+        imageView.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 0.5).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor).isActive = true
+        
+        let bottomContainerView = UIView()
+        addSubview(bottomContainerView)
+        bottomContainerView.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainerView.addSubview(descView)
+        bottomContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        topContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        bottomContainerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        bottomContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        bottomContainerView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
+        bottomContainerView.backgroundColor = .green
+        bottomContainerView.isUserInteractionEnabled = true
+        descView.topAnchor.constraint(equalTo: bottomContainerView.topAnchor).isActive = true
+        descView.leftAnchor.constraint(equalTo: bottomContainerView.leftAnchor, constant: 30).isActive = true
+        descView.rightAnchor.constraint(equalTo: bottomContainerView.rightAnchor, constant: -30).isActive = true
+        descView.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 0.5).isActive = true
+//        setupButton()
+        bottomContainerView.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.topAnchor.constraint(equalTo: descView.bottomAnchor, constant: 30).isActive = true
+        button.centerXAnchor.constraint(equalTo: bottomContainerView.centerXAnchor).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+    }
+    
+    private let imageView: UIImageView = {
+        let image = UIImage(named: "cat")
+        let imageView = UIImageView.init(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -52,64 +105,18 @@ class PageCollectionViewCell: UICollectionViewCell {
         return textView
     }()
     
-    private let prevButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("PREV", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(.gray, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+    private let button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Let's Go!", for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .red
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     
-    private let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("NEXT", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.setTitleColor(.mainPink, for: .normal)
-        return button
-    }()
-    
-    private let pageControl: UIPageControl = {
-        let pc = UIPageControl()
-        pc.currentPage = 0
-        pc.numberOfPages = 4
-        pc.currentPageIndicatorTintColor = .red
-        pc.pageIndicatorTintColor = .gray
-        return pc
-    }()
-    
-        
-    private func setupLayout() {
-        let topImageContainerView = UIView()
-        addSubview(topImageContainerView)
-        topImageContainerView.addSubview(catImageView)
-        addSubview(descView)
-        topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        topImageContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier : 0.5).isActive = true
-        topImageContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        topImageContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        topImageContainerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        
-        catImageView.widthAnchor.constraint(equalTo: topImageContainerView.widthAnchor, multiplier: 0.5).isActive = true
-        catImageView.heightAnchor.constraint(equalTo: topImageContainerView.heightAnchor, multiplier: 0.5).isActive = true
-        catImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor).isActive = true
-        catImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor).isActive = true
-
-        descView.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor).isActive = true
-        descView.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        descView.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
-        descView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    }
-    
-    private func setupBottomControls() {
-        let bottomControlsStackView = UIStackView(arrangedSubviews: [prevButton, pageControl, nextButton])
-        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomControlsStackView.distribution = .fillEqually
-        addSubview(bottomControlsStackView)
-        NSLayoutConstraint.activate([bottomControlsStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-                                     bottomControlsStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-                                     bottomControlsStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-                                     bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)])
+    @objc private func buttonPressed() {
+        print("Button is pressed")
+        delegate?.didPressButton()
     }
 }
