@@ -27,6 +27,7 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
         view?.backgroundColor = .white
         view.addSubview(scrollView)
         scrollView.delegate = self
+        scrollView.delaysContentTouches = false
         scrollView.isUserInteractionEnabled = true
         setupScrollView()
         setupBottomControls()
