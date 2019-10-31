@@ -12,13 +12,9 @@ extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
 
-extension SwipeCollectionViewController: MyCustomCellDelegate {
-    func didPressButton() {
-        print("Button was pressed")
-    }
-}
-
 class SwipeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+
     let pages = [
     Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Quickly discover new music with by swiping left or right", hasButton: false),
     Page(imageName: "fifteen", headerText: "Tired of listening to whole songs?", bodyText: "We curate the 15 seconds of the hottest part of the song for your convenience.", hasButton: false),
@@ -46,7 +42,6 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? PageCollectionViewCell
-        cell?.delegate = self as MyCustomCellDelegate
         cell?.isUserInteractionEnabled = true
         cell?.contentView.isUserInteractionEnabled = true
         let page = pages[indexPath.item]
@@ -68,6 +63,10 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
         let x = targetContentOffset.pointee.x
         pageControl.currentPage = Int(x / view.frame.width)
         changeArrowColor()
+    }
+    
+    @objc private func buttonTapped() {
+        print("Button was tapped")
     }
     
     @objc private func handlePrev() {
@@ -92,8 +91,15 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
         }
         pageControl.currentPage = nextIndex
         changeArrowColor()
+        if (pageControl.currentPage == pages.count - 1) {
+            nextButton.addTarget(self, action: #selector(transitionToGenreSelection), for: .touchUpInside)
+        }
         let indexPath = IndexPath(item: nextIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    @objc func transitionToGenreSelection() {
+        self.view.window!.rootViewController = MainViewController()
     }
     
     func changeArrowColor() {

@@ -8,13 +8,7 @@
 
 import UIKit
 
-protocol MyCustomCellDelegate: class {
-    func didPressButton()
-    
-}
-
 class PageCollectionViewCell: UICollectionViewCell {
-    weak var delegate: MyCustomCellDelegate?
 
     var page: Page? {
         didSet {
@@ -76,12 +70,12 @@ class PageCollectionViewCell: UICollectionViewCell {
         descView.rightAnchor.constraint(equalTo: bottomContainerView.rightAnchor, constant: -30).isActive = true
         descView.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 0.5).isActive = true
 //        setupButton()
-        bottomContainerView.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.topAnchor.constraint(equalTo: descView.bottomAnchor, constant: 30).isActive = true
-        button.centerXAnchor.constraint(equalTo: bottomContainerView.centerXAnchor).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+//        bottomContainerView.addSubview(button)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.topAnchor.constraint(equalTo: descView.bottomAnchor, constant: 30).isActive = true
+//        button.centerXAnchor.constraint(equalTo: bottomContainerView.centerXAnchor).isActive = true
+//        button.widthAnchor.constraint(equalToConstant: 200).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
     }
     
@@ -105,18 +99,12 @@ class PageCollectionViewCell: UICollectionViewCell {
         return textView
     }()
     
-    private let button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Let's Go!", for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .red
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
-    
-    @objc private func buttonPressed() {
-        print("Button is pressed")
-        delegate?.didPressButton()
-    }
+//    let button: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Let's Go!", for: .normal)
+//        button.layer.cornerRadius = 10
+//        button.backgroundColor = .red
+//        button.setTitleColor(.black, for: .normal)
+//        return button
+//    }()
 }
