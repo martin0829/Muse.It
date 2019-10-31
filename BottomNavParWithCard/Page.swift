@@ -12,5 +12,5 @@ struct Page {
     let imageName: String
     let headerText: String
     let bodyText: String
-    let hasButton: Bool
+    let hasSpecialLayout: Bool
 }

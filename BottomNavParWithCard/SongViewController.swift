@@ -22,7 +22,6 @@ class SongViewController: UIViewController {
         view.addSubview(titleTextView)
         view.addSubview(playControllerView)
         setupLayout()
-        setupPlayControllerView()
         // Do any additional setup after loading the view.
     }
     
@@ -53,6 +52,7 @@ class SongViewController: UIViewController {
     
     private func setupLayout() {
         //album image
+        setupPlayControllerView()
         albumImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         albumImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.80).isActive = true
         albumImageView.heightAnchor.constraint(equalTo: albumImageView.widthAnchor, multiplier: 1).isActive = true

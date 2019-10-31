@@ -9,7 +9,8 @@
 import UIKit
 
 class PageView: UIViewController {
-
+    var hasSpecialLayout: Bool = false
+    
     var page: Page? {
         didSet {
             guard let unwrappedPage = page else { return }
@@ -18,26 +19,30 @@ class PageView: UIViewController {
             attributedText.append(NSMutableAttributedString(string: "\n\n\(unwrappedPage.bodyText)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 25)]))
             descView.attributedText = attributedText
             descView.textAlignment = .center
-//            if unwrappedPage.hasButton {
-//                setupButton()
-//            }
+            print("didSet")
+            hasSpecialLayout = unwrappedPage.hasSpecialLayout
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLayout()
+        if hasSpecialLayout {
+            setupSpecialLayout()
+        } else {
+            setupLayout()
+        }
     }
     
-    private func setupButton() {
-        
+    private func setupSpecialLayout() {
+        print("Setup Special Layout")
     }
     
     private func setupLayout() {
+        print("setupLayout")
         let topContainerView = UIView()
         view.addSubview(topContainerView)
         topContainerView.addSubview(imageView)
-        topContainerView.backgroundColor = .red
+//        topContainerView.backgroundColor = .red
         topContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         topContainerView.translatesAutoresizingMaskIntoConstraints = false
         topContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier : 0.5).isActive = true
@@ -59,7 +64,7 @@ class PageView: UIViewController {
         bottomContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         bottomContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
         bottomContainerView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
-        bottomContainerView.backgroundColor = .green
+//        bottomContainerView.backgroundColor = .green
         bottomContainerView.isUserInteractionEnabled = true
         descView.topAnchor.constraint(equalTo: bottomContainerView.topAnchor).isActive = true
         descView.leftAnchor.constraint(equalTo: bottomContainerView.leftAnchor, constant: 30).isActive = true
