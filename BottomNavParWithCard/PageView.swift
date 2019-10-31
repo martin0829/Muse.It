@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PageCollectionViewCell: UICollectionViewCell {
+class PageView: UIViewController {
 
     var page: Page? {
         didSet {
@@ -24,13 +24,9 @@ class PageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setupLayout()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented ")
     }
     
     private func setupButton() {
@@ -39,15 +35,15 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         let topContainerView = UIView()
-        addSubview(topContainerView)
+        view.addSubview(topContainerView)
         topContainerView.addSubview(imageView)
         topContainerView.backgroundColor = .red
-        topContainerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        topContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         topContainerView.translatesAutoresizingMaskIntoConstraints = false
-        topContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier : 0.5).isActive = true
-        topContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        topContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        topContainerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        topContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier : 0.5).isActive = true
+        topContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        topContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        topContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
         imageView.widthAnchor.constraint(equalTo: topContainerView.widthAnchor, multiplier: 0.5).isActive = true
         imageView.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 0.5).isActive = true
@@ -55,13 +51,13 @@ class PageCollectionViewCell: UICollectionViewCell {
         imageView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor).isActive = true
         
         let bottomContainerView = UIView()
-        addSubview(bottomContainerView)
+        view.addSubview(bottomContainerView)
         bottomContainerView.translatesAutoresizingMaskIntoConstraints = false
         bottomContainerView.addSubview(descView)
-        bottomContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        topContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        bottomContainerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        bottomContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        bottomContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        topContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        bottomContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        bottomContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
         bottomContainerView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
         bottomContainerView.backgroundColor = .green
         bottomContainerView.isUserInteractionEnabled = true

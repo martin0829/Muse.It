@@ -22,8 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        let viewController = SwipeCollectionViewController(collectionViewLayout: layout)
-        viewController.view.isUserInteractionEnabled = true
+        let viewController = SwipeViewController()
         window?.rootViewController = viewController
 //        window?.rootViewController = MainViewController()
         window?.makeKeyAndVisible()

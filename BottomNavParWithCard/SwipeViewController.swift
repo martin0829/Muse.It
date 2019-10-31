@@ -12,8 +12,8 @@ extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
 
-class SwipeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+class SwipeViewController: UIViewController, UIScrollViewDelegate {
+    let scrollView: UIScrollView = UIScrollView()
 
     let pages = [
     Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Quickly discover new music with by swiping left or right", hasButton: false),
@@ -23,48 +23,31 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.isUserInteractionEnabled = true
-        view.isUserInteractionEnabled = true
-        collectionView?.backgroundColor = .white
-        collectionView?.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
-        collectionView.isPagingEnabled = true
+        view?.backgroundColor = .white
+        view.addSubview(scrollView)
+        scrollView.delegate = self
+        setupScrollView()
         setupBottomControls()
-        
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    func setupScrollView() {
+        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height)
+        scrollView.isPagingEnabled = true
+        for i in 0 ..< pages.count  {
+            let viewController = PageView()
+            viewController.page = pages[i]
+            viewController.view.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
+            scrollView.addSubview(viewController.view)
+        }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pages.count
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? PageCollectionViewCell
-        cell?.isUserInteractionEnabled = true
-        cell?.contentView.isUserInteractionEnabled = true
-        let page = pages[indexPath.item]
-        
-//        if let cell = cell as? PageCollectionViewCell {
-//            cell.page = page
-//        } else {
-//            print("not a pageCollectionViewCell")
-//        }
-        cell!.page = page
-        return cell!
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
-    }
-    
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let x = targetContentOffset.pointee.x
         pageControl.currentPage = Int(x / view.frame.width)
         changeArrowColor()
     }
-    
+
     @objc private func buttonTapped() {
         print("Button was tapped")
     }
@@ -78,8 +61,11 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
         }
         pageControl.currentPage = nextIndex
         changeArrowColor()
-        let indexPath = IndexPath(item: nextIndex, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    
+        var frame = scrollView.frame;
+        frame.origin.x = frame.size.width * CGFloat(pageControl.currentPage);
+        frame.origin.y = 0;
+        scrollView.scrollRectToVisible(frame, animated: true)
     }
     
     @objc private func handleNext() {
@@ -94,8 +80,11 @@ class SwipeCollectionViewController: UICollectionViewController, UICollectionVie
         if (pageControl.currentPage == pages.count - 1) {
             nextButton.addTarget(self, action: #selector(transitionToGenreSelection), for: .touchUpInside)
         }
-        let indexPath = IndexPath(item: nextIndex, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        var frame = scrollView.frame;
+        frame.origin.x = frame.size.width * CGFloat(pageControl.currentPage);
+        frame.origin.y = 0;
+        scrollView.scrollRectToVisible(frame, animated: true)
+//        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     @objc func transitionToGenreSelection() {
