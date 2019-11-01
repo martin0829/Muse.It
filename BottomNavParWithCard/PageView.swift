@@ -10,6 +10,7 @@ import UIKit
 
 class PageView: UIViewController {
     var hasSpecialLayout: Bool = false
+    var source: UIViewController? = nil
     
     var page: Page? {
         didSet {
@@ -19,7 +20,6 @@ class PageView: UIViewController {
             attributedText.append(NSMutableAttributedString(string: "\n\n\(unwrappedPage.bodyText)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 25)]))
             descView.attributedText = attributedText
             descView.textAlignment = .center
-            print("didSet")
             hasSpecialLayout = unwrappedPage.hasSpecialLayout
         }
     }
@@ -53,6 +53,7 @@ class PageView: UIViewController {
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
+        stackView.isUserInteractionEnabled = true
         stackView.alignment = .center
         stackView.axis = .vertical
         stackView.spacing = 30
@@ -60,32 +61,27 @@ class PageView: UIViewController {
         stackView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 30).isActive = true
         stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.25).isActive = true
+    
+        print("Adding button to stackView")
         
-        
-        
+        let popButton = UIButton(type: .system)
+        popButton.setTitle("Pop", for: .normal)
+        popButton.translatesAutoresizingMaskIntoConstraints = false
+        popButton.setTitleColor(.black, for: .normal)
+        popButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
+        popButton.layer.cornerRadius = 10
+        popButton.layer.borderWidth = 5
+        popButton.addTarget(source!, action: #selector(handlePopButton), for: .touchUpInside)
         stackView.addArrangedSubview(popButton)
         stackView.addArrangedSubview(hiphopButton)
         stackView.addArrangedSubview(edmButton)
-        popButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
-//        popButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        hiphopButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
-//        hiphopButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        edmButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
-//        edmButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
+//        popButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
+//        hiphopButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
+//        edmButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
+//
     }
 
-    private let popButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Pop", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
-        button.layer.cornerRadius = 10
-        button.layer.borderWidth = 5
-        button.addTarget(self, action: #selector(handlePopButton), for: .touchUpInside)
-        return button
-    }()
+//    private var popButton: UIButton = UIButton(type: .system)
 
     private let hiphopButton: UIButton = {
         let button = UIButton(type: .system)
@@ -95,7 +91,7 @@ class PageView: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 5
-//        button.addTarget(self, action: #selector(handlePopButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleHipHopButton), for: .touchUpInside)
         return button
     }()
 
@@ -107,12 +103,27 @@ class PageView: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 5
-//        button.addTarget(self, action: #selector(handlePopButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleEDMButton), for: .touchUpInside)
         return button
     }()
     
     @objc func handlePopButton() {
         print("Handling pop button")
+//        self.view.window!.rootViewController = MainViewController()
+//        let options: UIView.AnimationOptions = .transitionCrossDissolve
+//        UIView.transition(with: self.view.window!, duration: 0.5, options: options, animations: {}, completion: nil)
+    }
+    
+    @objc func handleHipHopButton() {
+        print("Handling Hip Hop button")
+        self.view.window!.rootViewController = MainViewController()
+        let options: UIView.AnimationOptions = .transitionCrossDissolve
+        UIView.transition(with: self.view.window!, duration: 0.5, options: options, animations: {}, completion: nil)
+    }
+    
+    
+    @objc func handleEDMButton() {
+        print("Handling Hip Hop button")
         self.view.window!.rootViewController = MainViewController()
         let options: UIView.AnimationOptions = .transitionCrossDissolve
         UIView.transition(with: self.view.window!, duration: 0.5, options: options, animations: {}, completion: nil)

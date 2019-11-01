@@ -16,9 +16,6 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
     let scrollView: UIScrollView = UIScrollView()
 
     let pages = [
-    Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Quickly discover new music with by swiping left or right", hasSpecialLayout: false),
-    Page(imageName: "fifteen", headerText: "Tired of listening to whole songs?", bodyText: "We curate the 15 seconds of the hottest part of the song for your convenience.", hasSpecialLayout: false),
-    Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasSpecialLayout: false),
     Page(imageName: "library", headerText: "Select Your Favorite Genre", bodyText: "", hasSpecialLayout: true)
     ]
     
@@ -26,19 +23,24 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         view?.backgroundColor = .white
         view.addSubview(scrollView)
-        scrollView.delegate = self
-        scrollView.delaysContentTouches = false
-        scrollView.isUserInteractionEnabled = true
         setupScrollView()
         setupBottomControls()
     }
     
     func setupScrollView() {
-        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height)
+        scrollView.delegate = self
+        scrollView.isUserInteractionEnabled = true
         scrollView.isPagingEnabled = true
+        scrollView.isExclusiveTouch = true
+        scrollView.canCancelContentTouches = true;
+        scrollView.delaysContentTouches = true;
+        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        scrollView.clipsToBounds = true
+        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height)
+
         for i in 0 ..< pages.count  {
             let viewController = PageView()
+            viewController.source = self
             viewController.page = pages[i]
             viewController.view.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
             scrollView.addSubview(viewController.view)
