@@ -16,7 +16,9 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
     let scrollView: UIScrollView = UIScrollView()
 
     let pages = [
-    Page(imageName: "library", headerText: "Select Your Favorite Genre", bodyText: "", hasSpecialLayout: true)
+    Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Quickly discover new music with by swiping left or right", hasSpecialLayout: false),
+    Page(imageName: "fifteen", headerText: "Tired of listening to whole songs?", bodyText: "We curate the 15 seconds of the hottest part of the song for your convenience.", hasSpecialLayout: false),
+//    Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasSpecialLayout: true),
     ]
     
     override func viewDidLoad() {
@@ -39,11 +41,11 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height)
 
         for i in 0 ..< pages.count  {
-            let viewController = PageView()
-            viewController.source = self
-            viewController.page = pages[i]
-            viewController.view.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
-            scrollView.addSubview(viewController.view)
+            let subView = PageView(frame: CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height))
+//            subView.translatesAutoresizingMaskIntoConstraints = false
+            subView.page = pages[i]
+            subView.backgroundColor = i % 2 == 0 ? .red : .green
+            scrollView.addSubview(subView)
         }
     }
     
