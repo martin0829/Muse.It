@@ -61,17 +61,7 @@ class PageView: UIView {
         stackView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 30).isActive = true
         stackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -frame.height * 0.25).isActive = true
-    
-        print("Adding button to stackView")
-        
-        let popButton = UIButton(type: .system)
-        popButton.setTitle("Pop", for: .normal)
-        popButton.translatesAutoresizingMaskIntoConstraints = false
-        popButton.setTitleColor(.black, for: .normal)
-        popButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
-        popButton.layer.cornerRadius = 10
-        popButton.layer.borderWidth = 5
-        popButton.addTarget(self, action: #selector(handlePopButton), for: .touchUpInside)
+            
         stackView.addArrangedSubview(popButton)
         stackView.addArrangedSubview(hiphopButton)
         stackView.addArrangedSubview(edmButton)
@@ -119,9 +109,9 @@ class PageView: UIView {
     
     @objc func handlePopButton() {
         print("Handling pop button")
-//        self.window!.rootViewController = MainViewController()
-//        let options: UIView.AnimationOptions = .transitionCrossDissolve
-//        UIView.transition(with: self.window!, duration: 0.5, options: options, animations: {}, completion: nil)
+        self.window!.rootViewController = MainViewController()
+        let options: UIView.AnimationOptions = .transitionCrossDissolve
+        UIView.transition(with: self, duration: 0.5, options: options, animations: {}, completion: nil)
     }
     
     @objc func handleHipHopButton() {
@@ -140,49 +130,34 @@ class PageView: UIView {
     }
     
     private func setupLayout() {
-        layer.borderWidth = 5
-        layer.borderColor = .init(srgbRed: 1, green: 0.5, blue: 0.5, alpha: 1)
         let topContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         addSubview(topContainerView)
-        topContainerView.backgroundColor = .orange
-        topContainerView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         topContainerView.translatesAutoresizingMaskIntoConstraints = false
         topContainerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        topContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        topContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         topContainerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-//        topContainerView.addSubview(imageView)
-////        topContainerView.backgroundColor = .orange
+        topContainerView.addSubview(imageView)
+        topContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        topContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        imageView.widthAnchor.constraint(equalTo: topContainerView.widthAnchor, multiplier: 0.5).isActive = true
+        imageView.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 0.5).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor).isActive = true
 
-//
-        
-//        topContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-//        topContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-
+        let bottomContainerView = UIView()
+        addSubview(bottomContainerView)
+        bottomContainerView.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainerView.addSubview(descView)
+        bottomContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        bottomContainerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        bottomContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        bottomContainerView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
+        bottomContainerView.isUserInteractionEnabled = true
+        descView.topAnchor.constraint(equalTo: bottomContainerView.topAnchor).isActive = true
+        descView.leftAnchor.constraint(equalTo: bottomContainerView.leftAnchor, constant: 30).isActive = true
+        descView.rightAnchor.constraint(equalTo: bottomContainerView.rightAnchor, constant: -30).isActive = true
+        descView.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 0.5).isActive = true
     }
-//    private func setupLayout() {
-        
-//
-//        imageView.widthAnchor.constraint(equalTo: topContainerView.widthAnchor, multiplier: 0.5).isActive = true
-//        imageView.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 0.5).isActive = true
-//        imageView.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor).isActive = true
-//        imageView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor).isActive = true
-//
-//        let bottomContainerView = UIView()
-//        addSubview(bottomContainerView)
-//        bottomContainerView.translatesAutoresizingMaskIntoConstraints = false
-//        bottomContainerView.addSubview(descView)
-//        bottomContainerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-//        topContainerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-//        bottomContainerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-//        bottomContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
-//        bottomContainerView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
-//        bottomContainerView.backgroundColor = .purple
-//        bottomContainerView.isUserInteractionEnabled = true
-//        descView.topAnchor.constraint(equalTo: bottomContainerView.topAnchor).isActive = true
-//        descView.leftAnchor.constraint(equalTo: bottomContainerView.leftAnchor, constant: 30).isActive = true
-//        descView.rightAnchor.constraint(equalTo: bottomContainerView.rightAnchor, constant: -30).isActive = true
-//        descView.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 0.5).isActive = true
-//    }
     
     private let imageView: UIImageView = {
         let image = UIImage(named: "cat")

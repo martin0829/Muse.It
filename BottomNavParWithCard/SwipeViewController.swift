@@ -18,7 +18,8 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
     let pages = [
     Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Quickly discover new music with by swiping left or right", hasSpecialLayout: false),
     Page(imageName: "fifteen", headerText: "Tired of listening to whole songs?", bodyText: "We curate the 15 seconds of the hottest part of the song for your convenience.", hasSpecialLayout: false),
-//    Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasSpecialLayout: true),
+    Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasSpecialLayout: false),
+    Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasSpecialLayout: true),
     ]
     
     override func viewDidLoad() {
@@ -44,7 +45,6 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
             let subView = PageView(frame: CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height))
 //            subView.translatesAutoresizingMaskIntoConstraints = false
             subView.page = pages[i]
-            subView.backgroundColor = i % 2 == 0 ? .red : .green
             scrollView.addSubview(subView)
         }
     }
@@ -55,10 +55,6 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
         changeArrowColor()
     }
 
-    @objc private func buttonTapped() {
-        print("Button was tapped")
-    }
-    
     @objc private func handlePrev() {
         let nextIndex: Int
         if (pageControl.currentPage > 0) {
