@@ -13,8 +13,9 @@ import AVFoundation
 class DiscoveryViewController: UIViewController {
     var player: AVQueuePlayer? = nil
     var songs = SongAPI.getSongs()
-    var curSong: Song? = nil
+    var curSongIndex: Int = 0
     var originalCardCenter: CGPoint? = nil
+    let depthOfSongTree: Int = 4
     
     //----------------------- Functions --------------------------- //
 
@@ -26,7 +27,6 @@ class DiscoveryViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Discovery"
         
-        print(songs)
         setupCardView()
         setupPlayControllerView()
         initPlayer()
@@ -36,9 +36,7 @@ class DiscoveryViewController: UIViewController {
         print("Trying to add song to my library")
         let libraryViewNavigationController = self.tabBarController?.viewControllers![1] as! UINavigationController
         let libraryViewController = libraryViewNavigationController.viewControllers[0] as! LibraryViewController
-        if let curSong = curSong {
-            libraryViewController.addSong(curSong)
-        }
+        libraryViewController.addSong(songs[curSongIndex])
     }
     
     // The Pan Gesture
@@ -58,14 +56,14 @@ class DiscoveryViewController: UIViewController {
     
     func initPlayer() {
         var playerItems: [AVPlayerItem]? = []
-        for song in songs {
-            let filePath = Bundle.main.path(forResource: song.title, ofType: "mp3")
-            let fileURL = URL(fileURLWithPath: filePath!)
-            let avAsset = AVAsset(url: fileURL as URL)
-            let assetKeys = ["playable"]
-            let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
-            playerItems?.append(playerItem)
-        }
+        
+        let filePath = Bundle.main.path(forResource: songs[curSongIndex].title, ofType: "mp3")
+        let fileURL = URL(fileURLWithPath: filePath!)
+        let avAsset = AVAsset(url: fileURL as URL)
+        let assetKeys = ["playable"]
+        let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
+        playerItems?.append(playerItem)
+        
         if let playerItems = playerItems {
             player = AVQueuePlayer(items: playerItems)
         } else {
@@ -82,11 +80,11 @@ class DiscoveryViewController: UIViewController {
     @objc private func handleHeart() {
         print("Trying to Heart")
         addCurSongToLibrary()
-        showNextSong()
+        showNextSong(likedCurSong: true)
     }
     @objc private func handleDislike() {
        print("Trying to Dislike")
-       showNextSong()
+        showNextSong(likedCurSong: false)
    }
     
     @objc private func handlePanGesture(panGesture: UIPanGestureRecognizer) {
@@ -207,16 +205,32 @@ class DiscoveryViewController: UIViewController {
         lengthLabel.bottomAnchor.constraint(equalTo: playControllerView.bottomAnchor, constant: -5).isActive = true
     }
     
-    func showNextSong() {
-        songs.removeFirst()
-        curSong = songs.first
-        player?.advanceToNextItem()
-        let image = UIImage(named: "\(curSong?.album ?? "")")
+    func showNextSong(likedCurSong: Bool) {
+        if curSongIndex >= Int(pow(2.0, Double(depthOfSongTree - 1))) - 1 {
+                //show 'Were you able to discover any songs you liked?.'
+                // 'Add reset demo button'
+            
+        }
+        if likedCurSong {
+            curSongIndex = curSongIndex * 2 + 2
+        } else {
+            curSongIndex = curSongIndex * 2 + 1
+        }
+        let nextSong: Song = songs[curSongIndex]
+        let image = UIImage(named: "\(nextSong.album ?? "")")
         albumImageView.image = image
-        let attributedText = NSMutableAttributedString(string: "\(curSong?.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
-        attributedText.append(NSMutableAttributedString(string: "\n\(curSong?.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
+        let attributedText = NSMutableAttributedString(string: "\(nextSong.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
+        attributedText.append(NSMutableAttributedString(string: "\n\(nextSong.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
         titleTextView.attributedText = attributedText
         titleTextView.textAlignment = .center
+        let filePath = Bundle.main.path(forResource: nextSong.title, ofType: "mp3")
+        let fileURL = URL(fileURLWithPath: filePath!)
+        let avAsset = AVAsset(url: fileURL as URL)
+        let assetKeys = ["playable"]
+        let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
+        player?.insert(playerItem, after: player?.currentItem)
+        player?.advanceToNextItem()
+        
         enterCard()
         handlePlay()
     }
@@ -246,17 +260,13 @@ class DiscoveryViewController: UIViewController {
     }()
     
     lazy var albumImageView: UIImageView = {
-        curSong = songs.first
-        if let curSong = curSong {
-            let image = UIImage(named: "\(curSong.album ?? "")")
-            let imageView = UIImageView(image: image)
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.contentMode = .scaleAspectFit
-            return imageView
-        } else {
-            print("Current song does not exist!")
-            return UIImageView()
-       }
+        let curSong = songs[curSongIndex]
+        let image = UIImage(named: "\(curSong.album ?? "")")
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+        
     }()
     
     lazy var thumbsImageView: UIImageView = {
@@ -269,9 +279,10 @@ class DiscoveryViewController: UIViewController {
     
     
     lazy var titleTextView: UITextView = {
+        let curSong = songs[curSongIndex]
         let textView = UITextView(frame: CGRect(x: 100, y: 100, width: 500, height: 500))
-        let attributedText = NSMutableAttributedString(string: "\(curSong?.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
-        attributedText.append(NSMutableAttributedString(string: "\n\(curSong?.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
+        let attributedText = NSMutableAttributedString(string: "\(curSong.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
+        attributedText.append(NSMutableAttributedString(string: "\n\(curSong.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
         textView.attributedText = attributedText
         textView.textAlignment = .center
         textView.backgroundColor = .none
