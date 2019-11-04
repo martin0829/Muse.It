@@ -109,8 +109,7 @@ class PageView: UIView {
     
     @objc func handlePopButton() {
         print("Handling pop button")
-        let mainViewController = MainViewController() //Got to change it to navigation controlelr's first view controller
-        print(mainViewController.viewControllers!)
+        let mainViewController = MainViewController()
         let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
         discoveryViewController.setGenreAndGetSong(genre: "Pop")
         self.window!.rootViewController = mainViewController

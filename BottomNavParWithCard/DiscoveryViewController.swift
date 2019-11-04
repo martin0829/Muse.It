@@ -15,8 +15,10 @@ class DiscoveryViewController: UIViewController {
     var songs : [Song]? = nil
     var curSongIndex: Int = 0
     var originalCardCenter: CGPoint? = nil
-    let depthOfSongTree: Int = 2
+    let depthOfSongTree: Int = 4
     var genre: String? = nil
+    let finalViewController = FinalViewController()
+
     
     //----------------------- Functions --------------------------- //
 
@@ -47,8 +49,7 @@ class DiscoveryViewController: UIViewController {
     
     func addCurSongToLibrary() {
         print("Trying to add song to my library")
-        let libraryViewNavigationController = self.tabBarController?.viewControllers![1] as! UINavigationController
-        let libraryViewController = libraryViewNavigationController.viewControllers[0] as! LibraryViewController
+        let libraryViewController = self.tabBarController!.viewControllers![1] as! LibraryViewController
         libraryViewController.addSong((songs?[curSongIndex])!)
     }
     
@@ -221,8 +222,12 @@ class DiscoveryViewController: UIViewController {
     func showNextSong(likedCurSong: Bool) {
         if curSongIndex >= Int(pow(2.0, Double(depthOfSongTree - 1))) - 1 {
             print("All Songs have been displayed")
+//            modalPresentationStyle = .fullScreen
+            self.finalViewController.modalTransitionStyle = .flipHorizontal
+            present(self.finalViewController, animated: true, completion: nil)
                 //show 'Were you able to discover any songs you liked?.'
                 // 'Add reset demo button'
+            return
         }
         if likedCurSong {
             curSongIndex = curSongIndex * 2 + 2
