@@ -109,7 +109,11 @@ class PageView: UIView {
     
     @objc func handlePopButton() {
         print("Handling pop button")
-        self.window!.rootViewController = MainViewController()
+        let mainViewController = MainViewController() //Got to change it to navigation controlelr's first view controller
+        print(mainViewController.viewControllers!)
+        let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
+        discoveryViewController.setGenreAndGetSong(genre: "Pop")
+        self.window!.rootViewController = mainViewController
         let options: UIView.AnimationOptions = .transitionCrossDissolve
         UIView.transition(with: self, duration: 0.5, options: options, animations: {}, completion: nil)
     }
