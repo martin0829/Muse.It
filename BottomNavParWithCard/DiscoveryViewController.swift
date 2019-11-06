@@ -85,10 +85,14 @@ class DiscoveryViewController: UIViewController {
         }
         let interval = CMTime(value: 1, timescale: 2)
         player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
-            
             let seconds = CMTimeGetSeconds(progressTime)
+            if seconds > 15 {
+                self.handleDislike()
+                return
+            }
             self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded()), Int(seconds.truncatingRemainder(dividingBy: 60)))
         })
+        handlePlay()
     }
     
     @objc private func handleHeart() {
@@ -207,14 +211,12 @@ class DiscoveryViewController: UIViewController {
         playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         playButton.topAnchor.constraint(equalToSystemSpacingBelow: playControllerView.topAnchor, multiplier: 1).isActive = true
         
-        // slider
-        slider.widthAnchor.constraint(equalTo: playControllerView.widthAnchor, multiplier: 0.8).isActive = true
-        slider.centerXAnchor.constraint(equalTo: playControllerView.centerXAnchor).isActive = true
-        slider.topAnchor.constraint(greaterThanOrEqualTo: playButton.bottomAnchor, constant: 5).isActive = true
-        slider.bottomAnchor.constraint(lessThanOrEqualTo: lengthLabel.bottomAnchor, constant: -10).isActive = true
-//        videoSlider.bottomAnchor.constraint(equalTo: lengthLabel.topAnchor).isActive = true
-        
-        //setup label
+//        // slider
+//        slider.widthAnchor.constraint(equalTo: playControllerView.widthAnchor, multiplier: 0.8).isActive = true
+//        slider.centerXAnchor.constraint(equalTo: playControllerView.centerXAnchor).isActive = true
+//        slider.topAnchor.constraint(greaterThanOrEqualTo: playButton.bottomAnchor, constant: 5).isActive = true
+//        slider.bottomAnchor.constraint(lessThanOrEqualTo: lengthLabel.bottomAnchor, constant: -10).isActive = true        
+//        //setup label
         lengthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         lengthLabel.bottomAnchor.constraint(equalTo: playControllerView.bottomAnchor, constant: -5).isActive = true
     }
@@ -225,8 +227,7 @@ class DiscoveryViewController: UIViewController {
 //            modalPresentationStyle = .fullScreen
             self.finalViewController.modalTransitionStyle = .flipHorizontal
             present(self.finalViewController, animated: true, completion: nil)
-                //show 'Were you able to discover any songs you liked?.'
-                // 'Add reset demo button'
+            player?.pause()
             return
         }
         if likedCurSong {
@@ -248,7 +249,7 @@ class DiscoveryViewController: UIViewController {
         let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
         player?.insert(playerItem, after: player?.currentItem)
         player?.advanceToNextItem()
-        
+//        player?.seek(to: CMTime(value: Int64(nextSong.startTime), timescale: 1))
         enterCard()
         handlePlay()
     }
@@ -356,7 +357,7 @@ class DiscoveryViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(playButton)
-        view.addSubview(slider)
+//        view.addSubview(slider)
         view.addSubview(lengthLabel)
         view.layer.cornerRadius = 10.0
         return view

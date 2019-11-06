@@ -179,6 +179,7 @@ class PageView: UIView {
         textView.textAlignment = .center
         textView.isEditable = false
         textView.isScrollEnabled = false
+        textView.backgroundColor = .white
         return textView
     }()
 }
