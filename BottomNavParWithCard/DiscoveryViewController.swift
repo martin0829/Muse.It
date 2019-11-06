@@ -11,7 +11,7 @@ import AVKit
 import AVFoundation
 
 class DiscoveryViewController: UIViewController {
-    var player: AVQueuePlayer? = nil
+    var player: AVPlayer = AVPlayer()
     var songs : [Song]? = nil
     var curSongIndex: Int = 0
     var originalCardCenter: CGPoint? = nil
@@ -83,7 +83,7 @@ class DiscoveryViewController: UIViewController {
             print("No songs available!")
         }
         let interval = CMTime(value: 1, timescale: 2)
-        player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
+        player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
             let seconds = CMTimeGetSeconds(progressTime)
             let finished = (self.curSongIndex >= Int(pow(2.0, Double(self.depthOfSongTree - 1))) - 1)
             if seconds > 15 && !finished {
@@ -147,7 +147,7 @@ class DiscoveryViewController: UIViewController {
          let icon = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
          playButton.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
          playButton.setImage(icon, for: .normal)
-         player!.pause()
+         player.pause()
     }
     
     @objc private func handlePlay() {
@@ -155,8 +155,8 @@ class DiscoveryViewController: UIViewController {
         let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
         playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
         playButton.setImage(icon, for: .normal)
-        if (player?.currentItem != nil) {
-            player!.play()
+        if (player.currentItem != nil) {
+            player.play()
         } else {
             print("Current player item is null!")
         }
@@ -164,11 +164,11 @@ class DiscoveryViewController: UIViewController {
     
     @objc private func handleSlider() {
         print("Trying to slide")
-        if let duration = player?.currentItem?.duration {
+        if let duration = player.currentItem?.duration {
             let totalSeconds = CMTimeGetSeconds(duration)
             let value = Float64(slider.value) * totalSeconds
             let seekTime = CMTime(value: Int64(value), timescale: 1)
-            player?.seek(to: seekTime, completionHandler: { (completedSeek)
+            player.seek(to: seekTime, completionHandler: { (completedSeek)
                 in
             })
         }
@@ -246,8 +246,8 @@ class DiscoveryViewController: UIViewController {
         let avAsset = AVAsset(url: fileURL as URL)
         let assetKeys = ["playable"]
         let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
-        player?.insert(playerItem, after: player?.currentItem)
-        player?.advanceToNextItem()
+        player.replaceCurrentItem(with: playerItem)
+        player.play()
 //        player?.seek(to: CMTime(value: Int64(nextSong.startTime), timescale: 1))
         enterCard()
         handlePlay()

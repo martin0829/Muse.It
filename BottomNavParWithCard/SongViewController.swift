@@ -82,7 +82,7 @@ class SongViewController: UIViewController {
         player.pause()
     }
 
-    @objc private func handlePlay() {
+    @objc func handlePlay() {
        print("Trying to play")
        let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
        playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
