@@ -48,6 +48,9 @@ class FinalViewController: UIViewController {
     }
     
     @objc func handleResetButton() {
+        let mainViewController = presentingViewController as! MainViewController
+        let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
+        discoveryViewController.player?.pause()
         UIApplication.shared.windows.first?.rootViewController = SwipeViewController()
 //        present(SwipeViewController(), animated: true, completion: nil)
     }

@@ -85,7 +85,8 @@ class DiscoveryViewController: UIViewController {
         let interval = CMTime(value: 1, timescale: 2)
         player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
             let seconds = CMTimeGetSeconds(progressTime)
-            if seconds > 15 {
+            let finished = (self.curSongIndex >= Int(pow(2.0, Double(self.depthOfSongTree - 1))) - 1)
+            if seconds > 15 && !finished {
                 self.handleDislike()
                 return
             }
@@ -226,7 +227,6 @@ class DiscoveryViewController: UIViewController {
             self.finalViewController.modalPresentationStyle = .fullScreen
             self.finalViewController.modalTransitionStyle = .flipHorizontal
             present(self.finalViewController, animated: true, completion: nil)
-            player?.pause()
             return
         }
         if likedCurSong {
