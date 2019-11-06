@@ -119,17 +119,23 @@ class PageView: UIView {
     
     @objc func handleHipHopButton() {
         print("Handling Hip Hop button")
-        self.window!.rootViewController = MainViewController()
+        let mainViewController = MainViewController()
+        let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
+        discoveryViewController.setGenreAndGetSong(genre: "Hip Hop")
+        self.window!.rootViewController = mainViewController
         let options: UIView.AnimationOptions = .transitionCrossDissolve
-        UIView.transition(with: self.window!, duration: 0.5, options: options, animations: {}, completion: nil)
+        UIView.transition(with: self, duration: 0.5, options: options, animations: {}, completion: nil)
     }
     
     
     @objc func handleEDMButton() {
-        print("Handling Hip Hop button")
-        self.window!.rootViewController = MainViewController()
+        print("Handling EDM button")
+        let mainViewController = MainViewController()
+        let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
+        discoveryViewController.setGenreAndGetSong(genre: "EDM")
+        self.window!.rootViewController = mainViewController
         let options: UIView.AnimationOptions = .transitionCrossDissolve
-        UIView.transition(with: self.window!, duration: 0.5, options: options, animations: {}, completion: nil)
+        UIView.transition(with: self, duration: 0.5, options: options, animations: {}, completion: nil)
     }
     
     private func setupLayout() {

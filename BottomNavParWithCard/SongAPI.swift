@@ -10,7 +10,7 @@ import UIKit
 class SongAPI {
     static func getSongs(genre: String) -> [Song] {
         var songs: [Song]? = nil
-        if (genre == "Pop") {
+        if genre == "Pop" {
             songs = [
                 Song(title: "SLOW DANCING IN THE DARK", artist: "Joji", genre: "R&B", album: "album_cover1"),
                 Song(title: "HIGHEST IN THE ROOM", artist: "Travis Scott", genre: "Hip Hop", album: "album_cover3"),
@@ -28,6 +28,10 @@ class SongAPI {
                 Song(title: "HIGHEST IN THE ROOM", artist: "Travis Scott", genre: "Hip Hop", album: "album_cover3"),
                 Song(title: "SLOW DANCING IN THE DARK", artist: "Joji", genre: "R&B", album: "album_cover1")
             ]
+        } else if genre == "Hip Hop" {
+            
+        } else {
+            
         }
         if let songs = songs {
             return songs

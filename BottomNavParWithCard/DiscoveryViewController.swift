@@ -38,13 +38,16 @@ class DiscoveryViewController: UIViewController {
     func setGenreAndGetSong(genre: String) {
         self.genre = genre
         songs = SongAPI.getSongs(genre: genre)
-        let nextSong: Song = (songs?[curSongIndex])!
-        let image = UIImage(named: "\(nextSong.album ?? "")")
-        albumImageView.image = image
-        let attributedText = NSMutableAttributedString(string: "\(nextSong.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
-        attributedText.append(NSMutableAttributedString(string: "\n\(nextSong.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
-        titleTextView.attributedText = attributedText
-        titleTextView.textAlignment = .center
+
+        if let songs = songs {
+            let song = songs[0]
+            let image = UIImage(named: "\(song.album ?? "")")
+            albumImageView.image = image
+            let attributedText = NSMutableAttributedString(string: "\(song.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
+            attributedText.append(NSMutableAttributedString(string: "\n\(song.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
+            titleTextView.attributedText = attributedText
+            titleTextView.textAlignment = .center
+        }
     }
     
     func addCurSongToLibrary() {
