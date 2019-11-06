@@ -29,7 +29,7 @@ class DiscoveryViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Discovery"
-
+        
         setupCardView()
         setupPlayControllerView()
         initPlayer()
@@ -215,7 +215,7 @@ class DiscoveryViewController: UIViewController {
 //        slider.widthAnchor.constraint(equalTo: playControllerView.widthAnchor, multiplier: 0.8).isActive = true
 //        slider.centerXAnchor.constraint(equalTo: playControllerView.centerXAnchor).isActive = true
 //        slider.topAnchor.constraint(greaterThanOrEqualTo: playButton.bottomAnchor, constant: 5).isActive = true
-//        slider.bottomAnchor.constraint(lessThanOrEqualTo: lengthLabel.bottomAnchor, constant: -10).isActive = true        
+//        slider.bottomAnchor.constraint(lessThanOrEqualTo: lengthLabel.bottomAnchor, constant: -10).isActive = true
 //        //setup label
         lengthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         lengthLabel.bottomAnchor.constraint(equalTo: playControllerView.bottomAnchor, constant: -5).isActive = true
@@ -224,7 +224,7 @@ class DiscoveryViewController: UIViewController {
     func showNextSong(likedCurSong: Bool) {
         if curSongIndex >= Int(pow(2.0, Double(depthOfSongTree - 1))) - 1 {
             print("All Songs have been displayed")
-//            modalPresentationStyle = .fullScreen
+            self.finalViewController.modalPresentationStyle = .fullScreen
             self.finalViewController.modalTransitionStyle = .flipHorizontal
             present(self.finalViewController, animated: true, completion: nil)
             player?.pause()

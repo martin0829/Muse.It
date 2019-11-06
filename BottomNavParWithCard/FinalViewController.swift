@@ -48,8 +48,8 @@ class FinalViewController: UIViewController {
     }
     
     @objc func handleResetButton() {
-        let viewController = SwipeViewController()
-        
+        UIApplication.shared.windows.first?.rootViewController = SwipeViewController()
+//        present(SwipeViewController(), animated: true, completion: nil)
     }
     
 
