@@ -10,13 +10,12 @@ import UIKit
 import AVKit
 
 class SongViewController: UIViewController {
-    var player: AVQueuePlayer? = nil
+    var player: AVPlayer = AVPlayer()
     var curSong: Song? = nil
     var songs: [Song]? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         initPlayer()
-        curSong = songs!.first
         view.backgroundColor = .white
         view.addSubview(albumImageView)
         view.addSubview(titleTextView)
@@ -28,22 +27,8 @@ class SongViewController: UIViewController {
     //----------------------- Functions --------------------------- //
 
     func initPlayer() {
-        var playerItems: [AVPlayerItem]? = []
-        for song in songs! {
-            let filePath = Bundle.main.path(forResource: song.title, ofType: "mp3")
-            let fileURL = URL(fileURLWithPath: filePath!)
-            let avAsset = AVAsset(url: fileURL as URL)
-            let assetKeys = ["playable"]
-            let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
-            playerItems?.append(playerItem)
-        }
-        if let playerItems = playerItems {
-            player = AVQueuePlayer(items: playerItems)
-        } else {
-            print("No songs available!")
-        }
         let interval = CMTime(value: 1, timescale: 2)
-        player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
+        player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
             
             let seconds = CMTimeGetSeconds(progressTime)
             self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded()), Int(seconds.truncatingRemainder(dividingBy: 60)))
@@ -94,33 +79,47 @@ class SongViewController: UIViewController {
         let icon = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
         playButton.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
         playButton.setImage(icon, for: .normal)
-        player!.pause()
-   }
-   
-   @objc private func handlePlay() {
+        player.pause()
+    }
+
+    @objc private func handlePlay() {
        print("Trying to play")
        let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
        playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
        playButton.setImage(icon, for: .normal)
-       if (player?.currentItem != nil) {
-           player!.play()
+       if (player.currentItem != nil) {
+           player.play()
        } else {
            print("Current player item is null!")
        }
-   }
+    }
    
-   @objc private func handleSlider() {
+    @objc private func handleSlider() {
        print("Trying to slide")
-       if let duration = player?.currentItem?.duration {
+       if let duration = player.currentItem?.duration {
            let totalSeconds = CMTimeGetSeconds(duration)
            let value = Float64(slider.value) * totalSeconds
            let seekTime = CMTime(value: Int64(value), timescale: 1)
-           player?.seek(to: seekTime, completionHandler: { (completedSeek)
+           player.seek(to: seekTime, completionHandler: { (completedSeek)
                in
            })
        }
-   }
+    }
     
+    func updateCardView() {
+       if let song = curSong {
+            let image = UIImage(named: "\(song.album ?? "")")
+            albumImageView.translatesAutoresizingMaskIntoConstraints = false
+            albumImageView.contentMode = .scaleAspectFit
+            albumImageView.image = image
+        
+            let attributedText = NSMutableAttributedString(string: "\(song.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
+            attributedText.append(NSMutableAttributedString(string: "\n\(song.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
+            titleTextView.attributedText = attributedText
+            titleTextView.textAlignment = .center
+        }
+        
+    }
 
     //----------------------- UI Elements --------------------------- //
 

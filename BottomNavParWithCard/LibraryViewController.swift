@@ -1,7 +1,9 @@
 import UIKit
+import AVKit
 
 class LibraryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var songs: [Song] = []
+    var playerItems: [AVPlayerItem] = []
     let songsTableView = UITableView()
     let songViewController = SongViewController()
     
@@ -17,8 +19,12 @@ class LibraryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         songViewController.curSong = songs[indexPath.row]
-        present(songViewController, animated: true, completion: nil)
-        print(songs)
+        let playerItem = playerItems[indexPath.row]
+        songViewController.player.replaceCurrentItem(with: playerItem)
+        songViewController.updateCardView()
+        present(songViewController, animated: true, completion: {
+            self.songViewController.player.play()
+        })
     }
 
     
@@ -43,6 +49,12 @@ class LibraryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func addSong(_ song: Song) {
         songs.append(song)
+        let filePath = Bundle.main.path(forResource: song.title, ofType: "mp3")
+        let fileURL = URL(fileURLWithPath: filePath!)
+        let avAsset = AVAsset(url: fileURL as URL)
+        let assetKeys = ["playable"]
+        let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
+        playerItems.append(playerItem)
         songsTableView.reloadData()
         print("reloaded data")
     }
