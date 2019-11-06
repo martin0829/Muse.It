@@ -18,6 +18,7 @@ class LibraryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         songViewController.curSong = songs[indexPath.row]
         present(songViewController, animated: true, completion: nil)
+        print(songs)
     }
 
     

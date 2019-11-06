@@ -78,7 +78,6 @@
 		5BE0F487235CEE440026B2DD /* BottomNavParWithCard */ = {
 			isa = PBXGroup;
 			children = (
-				5BC1FC7E2366183400E59DCB /* SongViewController.swift */,
 				5BE34FA4235D334D008B4587 /* Songs */,
 				5BE0F4A0235CF3E70026B2DD /* Song.swift */,
 				5BC4E6472368E496009FBC88 /* Page.swift */,
@@ -91,6 +90,7 @@
 				5BE0F493235CEE470026B2DD /* LaunchScreen.storyboard */,
 				5BE0F496235CEE470026B2DD /* Info.plist */,
 				5BE0F49C235CEF3E0026B2DD /* LibraryViewController.swift */,
+				5BC1FC7E2366183400E59DCB /* SongViewController.swift */,
 				5BE0F49E235CEF490026B2DD /* DiscoveryViewController.swift */,
 				5BF44355236AA43B002527F5 /* SwipeViewController.swift */,
 				5BF44353236AA160002527F5 /* PageView.swift */,

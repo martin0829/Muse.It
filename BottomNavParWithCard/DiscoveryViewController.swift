@@ -50,6 +50,7 @@ class DiscoveryViewController: UIViewController {
     func addCurSongToLibrary() {
         print("Trying to add song to my library")
         let libraryViewController = self.tabBarController!.viewControllers![1] as! LibraryViewController
+        print("adding \(songs?[curSongIndex]) to library")
         libraryViewController.addSong((songs?[curSongIndex])!)
     }
     
