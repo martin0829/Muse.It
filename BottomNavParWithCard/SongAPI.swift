@@ -47,7 +47,24 @@ class SongAPI {
                 Song(title: "Big Tipper", artist: "Joji", genre: "Pop", album: "album_cover1")
             ]
         } else {
-            
+            songs = [
+                Song(title: "All You Need To Know", artist: "Gryffin, Slander", genre: "EDM", album: "allyouneedtoknow_album"),
+                Song(title: "Only You", artist: "Cheat Codes", genre: "EDM", album: "onlyyou_album"),
+                Song(title: "Spicy", artist: "Herve Pagez, Diplo", genre: "EDM", album: "spicy_album"),
+                Song(title: "Sweet Dreams", artist: "Eurythmics", genre: "EDM", album: "sweetdreams_album"),
+                Song(title: "Trigger", artist: "Major Lazer & Khalid", genre: "EDM", album: "trigger_album"),
+                Song(title: "All Around The World", artist: "R3HAB", genre: "EDM", album: "allaroundtheworld_album"),
+                Song(title: "Happier", artist: "MarshMello", genre: "EDM", album: "happier_album"),
+                Song(title: "Flying On My Own", artist: "Céline Dion", genre: "EDM", album: "flyingonmyown_album"),
+                Song(title: "Colour", artist: "MNEK", genre: "EDM", album: "colour_album"),
+                Song(title: "Beautiful Now", artist: "Zedd", genre: "EDM", album: "beautifulnow_album"),
+                //download album image
+                Song(title: "We Don't Care", artist: "Sigala, The Vamps", genre: "EDM", album: "wedontcare_album"),
+                Song(title: "Something About You", artist: "Hayden James", genre: "EDM", album: "somethingaboutyou_album"),
+                Song(title: "Rushing Back", artist: "Flume", genre: "EDM", album: "rushingback_album"),
+                Song(title: "Right Now", artist: "Akon", genre: "EDM", album: "rightnow_album"),
+                Song(title: "Beach House", artist: "The Chainsmokers", genre: "EDM", album: "beachhouse_album")
+            ]
         }
         if let songs = songs {
             return songs

@@ -37,20 +37,25 @@
 		5B8F7FE02373AD8400BC30A9 /* Me You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FCD2373AD8300BC30A9 /* Me You.mp3 */; };
 		5B8F7FE12373AD8400BC30A9 /* Send It Up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FCE2373AD8300BC30A9 /* Send It Up.mp3 */; };
 		5B8F7FE22373AD8400BC30A9 /* Monster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FCF2373AD8400BC30A9 /* Monster.mp3 */; };
-		5B8F7FED2373AD8D00BC30A9 /* Marshmello ft. Bastille - Happier (Official Music Video).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE32373AD8B00BC30A9 /* Marshmello ft. Bastille - Happier (Official Music Video).mp3 */; };
-		5B8F7FEE2373AD8D00BC30A9 /* Céline Dion - Flying On My Own (Official Lyric Video).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE42373AD8B00BC30A9 /* Céline Dion - Flying On My Own (Official Lyric Video).mp3 */; };
-		5B8F7FEF2373AD8D00BC30A9 /* Sigala, The Vamps - We Don't Care (Lyric Video).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE52373AD8B00BC30A9 /* Sigala, The Vamps - We Don't Care (Lyric Video).mp3 */; };
-		5B8F7FF02373AD8D00BC30A9 /* Gromee - One Last Time ft. Jesper Jenset (Official Video).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE62373AD8C00BC30A9 /* Gromee - One Last Time ft. Jesper Jenset (Official Video).mp3 */; };
-		5B8F7FF12373AD8D00BC30A9 /* MNEK - Colour (Official Video) ft. Hailee Steinfeld.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE72373AD8C00BC30A9 /* MNEK - Colour (Official Video) ft. Hailee Steinfeld.mp3 */; };
-		5B8F7FF22373AD8D00BC30A9 /* The Chainsmokers - Beach House (Official Video).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE82373AD8C00BC30A9 /* The Chainsmokers - Beach House (Official Video).mp3 */; };
-		5B8F7FF32373AD8D00BC30A9 /* Cheat Codes, Little Mix - Only You (Official Video).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE92373AD8C00BC30A9 /* Cheat Codes, Little Mix - Only You (Official Video).mp3 */; };
-		5B8F7FF42373AD8D00BC30A9 /* Flume - Rushing Back (feat. Vera Blue).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEA2373AD8D00BC30A9 /* Flume - Rushing Back (feat. Vera Blue).mp3 */; };
-		5B8F7FF52373AD8D00BC30A9 /* Herve Pagez, Diplo - Spicy (Official Video) ft. Charli XCX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEB2373AD8D00BC30A9 /* Herve Pagez, Diplo - Spicy (Official Video) ft. Charli XCX.mp3 */; };
-		5B8F7FF62373AD8D00BC30A9 /* Nick Jonas, Robin Schulz - Right Now.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEC2373AD8D00BC30A9 /* Nick Jonas, Robin Schulz - Right Now.mp3 */; };
+		5B8F7FF22373AD8D00BC30A9 /* Beach House.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE82373AD8C00BC30A9 /* Beach House.mp3 */; };
+		5B8F7FF32373AD8D00BC30A9 /* Only You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FE92373AD8C00BC30A9 /* Only You.mp3 */; };
+		5B8F7FF42373AD8D00BC30A9 /* Rushing Back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEA2373AD8D00BC30A9 /* Rushing Back.mp3 */; };
+		5B8F7FF62373AD8D00BC30A9 /* Right Now.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEC2373AD8D00BC30A9 /* Right Now.mp3 */; };
 		5B8F7FF92373AEE800BC30A9 /* Brass Monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FF82373AEE700BC30A9 /* Brass Monkey.mp3 */; };
 		5B8F7FFB2373B14000BC30A9 /* Lucky.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FFA2373B14000BC30A9 /* Lucky.mp3 */; };
 		5BC1FC7F2366183400E59DCB /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC1FC7E2366183400E59DCB /* SongViewController.swift */; };
 		5BC4E6482368E497009FBC88 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E6472368E496009FBC88 /* Page.swift */; };
+		5BD73B622373F0F500B1A21B /* We Don't Care.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B5D2373F0F500B1A21B /* We Don't Care.mp3 */; };
+		5BD73B642373F0F500B1A21B /* Happier.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B5F2373F0F500B1A21B /* Happier.mp3 */; };
+		5BD73B652373F0F500B1A21B /* Spicy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B602373F0F500B1A21B /* Spicy.mp3 */; };
+		5BD73B6A2373F14A00B1A21B /* Sweet Dreams.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B672373F14A00B1A21B /* Sweet Dreams.mp3 */; };
+		5BD73B6B2373F14A00B1A21B /* Trigger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B682373F14A00B1A21B /* Trigger.mp3 */; };
+		5BD73B6C2373F14A00B1A21B /* All Around The World.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B692373F14A00B1A21B /* All Around The World.mp3 */; };
+		5BD73B6E2373F20800B1A21B /* We Got Love.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B6D2373F20800B1A21B /* We Got Love.mp3 */; };
+		5BD73B702373F21400B1A21B /* Something About You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B6F2373F21400B1A21B /* Something About You.mp3 */; };
+		5BD73B722373F22D00B1A21B /* Flying On My Own.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B712373F22D00B1A21B /* Flying On My Own.mp3 */; };
+		5BD73B742373F24600B1A21B /* Colour.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B732373F24600B1A21B /* Colour.mp3 */; };
+		5BD73B762373F76E00B1A21B /* Beautiful Now.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B752373F76E00B1A21B /* Beautiful Now.mp3 */; };
 		5BE0F489235CEE440026B2DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F488235CEE440026B2DD /* AppDelegate.swift */; };
 		5BE0F48B235CEE440026B2DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F48A235CEE440026B2DD /* SceneDelegate.swift */; };
 		5BE0F48D235CEE440026B2DD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0F48C235CEE440026B2DD /* MainViewController.swift */; };
@@ -95,21 +100,26 @@
 		5B8F7FCD2373AD8300BC30A9 /* Me You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Me You.mp3"; sourceTree = "<group>"; };
 		5B8F7FCE2373AD8300BC30A9 /* Send It Up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Send It Up.mp3"; sourceTree = "<group>"; };
 		5B8F7FCF2373AD8400BC30A9 /* Monster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Monster.mp3; sourceTree = "<group>"; };
-		5B8F7FE32373AD8B00BC30A9 /* Marshmello ft. Bastille - Happier (Official Music Video).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marshmello ft. Bastille - Happier (Official Music Video).mp3"; sourceTree = "<group>"; };
-		5B8F7FE42373AD8B00BC30A9 /* Céline Dion - Flying On My Own (Official Lyric Video).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Céline Dion - Flying On My Own (Official Lyric Video).mp3"; sourceTree = "<group>"; };
-		5B8F7FE52373AD8B00BC30A9 /* Sigala, The Vamps - We Don't Care (Lyric Video).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sigala, The Vamps - We Don't Care (Lyric Video).mp3"; sourceTree = "<group>"; };
-		5B8F7FE62373AD8C00BC30A9 /* Gromee - One Last Time ft. Jesper Jenset (Official Video).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gromee - One Last Time ft. Jesper Jenset (Official Video).mp3"; sourceTree = "<group>"; };
-		5B8F7FE72373AD8C00BC30A9 /* MNEK - Colour (Official Video) ft. Hailee Steinfeld.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MNEK - Colour (Official Video) ft. Hailee Steinfeld.mp3"; sourceTree = "<group>"; };
-		5B8F7FE82373AD8C00BC30A9 /* The Chainsmokers - Beach House (Official Video).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Chainsmokers - Beach House (Official Video).mp3"; sourceTree = "<group>"; };
-		5B8F7FE92373AD8C00BC30A9 /* Cheat Codes, Little Mix - Only You (Official Video).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cheat Codes, Little Mix - Only You (Official Video).mp3"; sourceTree = "<group>"; };
-		5B8F7FEA2373AD8D00BC30A9 /* Flume - Rushing Back (feat. Vera Blue).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flume - Rushing Back (feat. Vera Blue).mp3"; sourceTree = "<group>"; };
-		5B8F7FEB2373AD8D00BC30A9 /* Herve Pagez, Diplo - Spicy (Official Video) ft. Charli XCX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Herve Pagez, Diplo - Spicy (Official Video) ft. Charli XCX.mp3"; sourceTree = "<group>"; };
-		5B8F7FEC2373AD8D00BC30A9 /* Nick Jonas, Robin Schulz - Right Now.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nick Jonas, Robin Schulz - Right Now.mp3"; sourceTree = "<group>"; };
+		5B8F7FE82373AD8C00BC30A9 /* Beach House.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Beach House.mp3"; sourceTree = "<group>"; };
+		5B8F7FE92373AD8C00BC30A9 /* Only You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Only You.mp3"; sourceTree = "<group>"; };
+		5B8F7FEA2373AD8D00BC30A9 /* Rushing Back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rushing Back.mp3"; sourceTree = "<group>"; };
+		5B8F7FEC2373AD8D00BC30A9 /* Right Now.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Right Now.mp3"; sourceTree = "<group>"; };
 		5B8F7FF72373ADF300BC30A9 /* All You Need To Know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "All You Need To Know.mp3"; sourceTree = "<group>"; };
 		5B8F7FF82373AEE700BC30A9 /* Brass Monkey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Brass Monkey.mp3"; sourceTree = "<group>"; };
 		5B8F7FFA2373B14000BC30A9 /* Lucky.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Lucky.mp3; sourceTree = "<group>"; };
 		5BC1FC7E2366183400E59DCB /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		5BC4E6472368E496009FBC88 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		5BD73B5D2373F0F500B1A21B /* We Don't Care.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "We Don't Care.mp3"; sourceTree = "<group>"; };
+		5BD73B5F2373F0F500B1A21B /* Happier.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Happier.mp3; sourceTree = "<group>"; };
+		5BD73B602373F0F500B1A21B /* Spicy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Spicy.mp3; sourceTree = "<group>"; };
+		5BD73B672373F14A00B1A21B /* Sweet Dreams.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sweet Dreams.mp3"; sourceTree = "<group>"; };
+		5BD73B682373F14A00B1A21B /* Trigger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Trigger.mp3; sourceTree = "<group>"; };
+		5BD73B692373F14A00B1A21B /* All Around The World.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "All Around The World.mp3"; sourceTree = "<group>"; };
+		5BD73B6D2373F20800B1A21B /* We Got Love.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "We Got Love.mp3"; sourceTree = "<group>"; };
+		5BD73B6F2373F21400B1A21B /* Something About You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Something About You.mp3"; sourceTree = "<group>"; };
+		5BD73B712373F22D00B1A21B /* Flying On My Own.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flying On My Own.mp3"; sourceTree = "<group>"; };
+		5BD73B732373F24600B1A21B /* Colour.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Colour.mp3; sourceTree = "<group>"; };
+		5BD73B752373F76E00B1A21B /* Beautiful Now.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Beautiful Now.mp3"; sourceTree = "<group>"; };
 		5BE0F485235CEE440026B2DD /* BottomNavParWithCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BottomNavParWithCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE0F488235CEE440026B2DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BE0F48A235CEE440026B2DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,16 +194,21 @@
 		5B8F7FA42373AD4500BC30A9 /* EDM */ = {
 			isa = PBXGroup;
 			children = (
-				5B8F7FE42373AD8B00BC30A9 /* Céline Dion - Flying On My Own (Official Lyric Video).mp3 */,
-				5B8F7FE92373AD8C00BC30A9 /* Cheat Codes, Little Mix - Only You (Official Video).mp3 */,
-				5B8F7FEA2373AD8D00BC30A9 /* Flume - Rushing Back (feat. Vera Blue).mp3 */,
-				5B8F7FE62373AD8C00BC30A9 /* Gromee - One Last Time ft. Jesper Jenset (Official Video).mp3 */,
-				5B8F7FEB2373AD8D00BC30A9 /* Herve Pagez, Diplo - Spicy (Official Video) ft. Charli XCX.mp3 */,
-				5B8F7FE32373AD8B00BC30A9 /* Marshmello ft. Bastille - Happier (Official Music Video).mp3 */,
-				5B8F7FE72373AD8C00BC30A9 /* MNEK - Colour (Official Video) ft. Hailee Steinfeld.mp3 */,
-				5B8F7FEC2373AD8D00BC30A9 /* Nick Jonas, Robin Schulz - Right Now.mp3 */,
-				5B8F7FE52373AD8B00BC30A9 /* Sigala, The Vamps - We Don't Care (Lyric Video).mp3 */,
-				5B8F7FE82373AD8C00BC30A9 /* The Chainsmokers - Beach House (Official Video).mp3 */,
+				5B8F7FE92373AD8C00BC30A9 /* Only You.mp3 */,
+				5BD73B752373F76E00B1A21B /* Beautiful Now.mp3 */,
+				5BD73B602373F0F500B1A21B /* Spicy.mp3 */,
+				5BD73B672373F14A00B1A21B /* Sweet Dreams.mp3 */,
+				5BD73B682373F14A00B1A21B /* Trigger.mp3 */,
+				5BD73B692373F14A00B1A21B /* All Around The World.mp3 */,
+				5BD73B5F2373F0F500B1A21B /* Happier.mp3 */,
+				5BD73B712373F22D00B1A21B /* Flying On My Own.mp3 */,
+				5BD73B732373F24600B1A21B /* Colour.mp3 */,
+				5BD73B6D2373F20800B1A21B /* We Got Love.mp3 */,
+				5BD73B5D2373F0F500B1A21B /* We Don't Care.mp3 */,
+				5BD73B6F2373F21400B1A21B /* Something About You.mp3 */,
+				5B8F7FEA2373AD8D00BC30A9 /* Rushing Back.mp3 */,
+				5B8F7FEC2373AD8D00BC30A9 /* Right Now.mp3 */,
+				5B8F7FE82373AD8C00BC30A9 /* Beach House.mp3 */,
 				5B8F7FF72373ADF300BC30A9 /* All You Need To Know.mp3 */,
 			);
 			path = EDM;
@@ -307,21 +322,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B8F7FDE2373AD8400BC30A9 /* Raw Thoughts.mp3 in Resources */,
+				5BD73B6E2373F20800B1A21B /* We Got Love.mp3 in Resources */,
+				5BD73B622373F0F500B1A21B /* We Don't Care.mp3 in Resources */,
+				5BD73B6B2373F14A00B1A21B /* Trigger.mp3 in Resources */,
+				5BD73B742373F24600B1A21B /* Colour.mp3 in Resources */,
 				5B8F7FD32373AD8400BC30A9 /* Shut em Down.mp3 in Resources */,
+				5BD73B702373F21400B1A21B /* Something About You.mp3 in Resources */,
 				5B8F7FD72373AD8400BC30A9 /* My Adidas.mp3 in Resources */,
 				5B8F7FBA2373AD6F00BC30A9 /* Easy.mp3 in Resources */,
 				5B8F7FBB2373AD6F00BC30A9 /* Don't Start Now.mp3 in Resources */,
 				5B8F7FD82373AD8400BC30A9 /* Too Fast.mp3 in Resources */,
+				5BD73B722373F22D00B1A21B /* Flying On My Own.mp3 in Resources */,
 				5B8F7FF92373AEE800BC30A9 /* Brass Monkey.mp3 in Resources */,
 				5B8F7FFB2373B14000BC30A9 /* Lucky.mp3 in Resources */,
-				5B8F7FF62373AD8D00BC30A9 /* Nick Jonas, Robin Schulz - Right Now.mp3 in Resources */,
+				5B8F7FF62373AD8D00BC30A9 /* Right Now.mp3 in Resources */,
 				5B8F7FD42373AD8400BC30A9 /* Downtown.mp3 in Resources */,
-				5B8F7FF52373AD8D00BC30A9 /* Herve Pagez, Diplo - Spicy (Official Video) ft. Charli XCX.mp3 in Resources */,
+				5BD73B6C2373F14A00B1A21B /* All Around The World.mp3 in Resources */,
 				5B8F7FD12373AD8400BC30A9 /* Nameless.mp3 in Resources */,
-				5B8F7FF42373AD8D00BC30A9 /* Flume - Rushing Back (feat. Vera Blue).mp3 in Resources */,
+				5B8F7FF42373AD8D00BC30A9 /* Rushing Back.mp3 in Resources */,
 				5B8F7FB72373AD6F00BC30A9 /* Chelsea Cutler.mp3 in Resources */,
-				5B8F7FF12373AD8D00BC30A9 /* MNEK - Colour (Official Video) ft. Hailee Steinfeld.mp3 in Resources */,
-				5B8F7FF22373AD8D00BC30A9 /* The Chainsmokers - Beach House (Official Video).mp3 in Resources */,
+				5B8F7FF22373AD8D00BC30A9 /* Beach House.mp3 in Resources */,
 				5B8F7FB32373AD6F00BC30A9 /* Kinfolks.mp3 in Resources */,
 				5B8F7FD52373AD8400BC30A9 /* God's Plan.mp3 in Resources */,
 				5B8F7FDB2373AD8400BC30A9 /* China Town.mp3 in Resources */,
@@ -330,24 +350,24 @@
 				5B8F7FB62373AD6F00BC30A9 /* All You Need To Know.mp3 in Resources */,
 				5B8F7FDA2373AD8400BC30A9 /* Immortal.mp3 in Resources */,
 				5B8F7FB52373AD6F00BC30A9 /* Never Seen The Rain.mp3 in Resources */,
+				5BD73B652373F0F500B1A21B /* Spicy.mp3 in Resources */,
 				5B8F7FDC2373AD8400BC30A9 /* Big Tipper.mp3 in Resources */,
 				5BE0F495235CEE470026B2DD /* LaunchScreen.storyboard in Resources */,
 				5B8F7FE02373AD8400BC30A9 /* Me You.mp3 in Resources */,
 				5B8F7FE22373AD8400BC30A9 /* Monster.mp3 in Resources */,
-				5B8F7FF32373AD8D00BC30A9 /* Cheat Codes, Little Mix - Only You (Official Video).mp3 in Resources */,
+				5B8F7FF32373AD8D00BC30A9 /* Only You.mp3 in Resources */,
 				5B8F7FD92373AD8400BC30A9 /* When I Grow Up.mp3 in Resources */,
-				5B8F7FF02373AD8D00BC30A9 /* Gromee - One Last Time ft. Jesper Jenset (Official Video).mp3 in Resources */,
+				5BD73B762373F76E00B1A21B /* Beautiful Now.mp3 in Resources */,
 				5BE0F492235CEE470026B2DD /* Assets.xcassets in Resources */,
-				5B8F7FEF2373AD8D00BC30A9 /* Sigala, The Vamps - We Don't Care (Lyric Video).mp3 in Resources */,
 				5B8F7FE12373AD8400BC30A9 /* Send It Up.mp3 in Resources */,
+				5BD73B6A2373F14A00B1A21B /* Sweet Dreams.mp3 in Resources */,
 				5B8F7FD02373AD8400BC30A9 /* Straight Outta Compton.mp3 in Resources */,
 				5B8F7FB92373AD6F00BC30A9 /* Broke.mp3 in Resources */,
 				5B8F7FB42373AD6F00BC30A9 /* Lose Control.mp3 in Resources */,
 				5B8F7FB12373AD6F00BC30A9 /* Good As Hell.mp3 in Resources */,
-				5B8F7FED2373AD8D00BC30A9 /* Marshmello ft. Bastille - Happier (Official Music Video).mp3 in Resources */,
 				5B8F7FB82373AD6F00BC30A9 /* Me Necesita.mp3 in Resources */,
+				5BD73B642373F0F500B1A21B /* Happier.mp3 in Resources */,
 				5B8F7FBC2373AD6F00BC30A9 /* Find An Island.mp3 in Resources */,
-				5B8F7FEE2373AD8D00BC30A9 /* Céline Dion - Flying On My Own (Official Lyric Video).mp3 in Resources */,
 				5B8F7FD22373AD8400BC30A9 /* Panini.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
