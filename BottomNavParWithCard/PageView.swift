@@ -133,9 +133,12 @@ class PageView: UIView {
         let mainViewController = MainViewController()
         let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
         discoveryViewController.setGenreAndGetSong(genre: "EDM")
+        
         self.window!.rootViewController = mainViewController
-        let options: UIView.AnimationOptions = .transitionCrossDissolve
-        UIView.transition(with: self, duration: 0.5, options: options, animations: {}, completion: nil)
+        UIView.transition(with: self, duration: 0.0, options: .transitionFlipFromTop, animations: {}, completion: { finished in
+                discoveryViewController.handlePlay()
+                print("Finished transition")
+        })
     }
     
     private func setupLayout() {

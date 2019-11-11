@@ -17,7 +17,6 @@ class DiscoveryViewController: UIViewController {
     var originalCardCenter: CGPoint? = nil
     let depthOfSongTree: Int = 4
     var genre: String? = nil
-    let finalViewController = FinalViewController()
 
     
     //----------------------- Functions --------------------------- //
@@ -32,15 +31,14 @@ class DiscoveryViewController: UIViewController {
         
         setupCardView()
         setupPlayControllerView()
-        initPlayer()
     }
     
     func setGenreAndGetSong(genre: String) {
         self.genre = genre
         songs = SongAPI.getSongs(genre: genre)
-
+        
         if let songs = songs {
-            let song = songs[0]
+            let song = songs[curSongIndex]
             let image = UIImage(named: "\(song.album ?? "")")
             albumImageView.image = image
             let attributedText = NSMutableAttributedString(string: "\(song.title ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
@@ -48,6 +46,7 @@ class DiscoveryViewController: UIViewController {
             titleTextView.attributedText = attributedText
             titleTextView.textAlignment = .center
         }
+        initPlayer()
     }
     
     func addCurSongToLibrary() {
@@ -72,30 +71,22 @@ class DiscoveryViewController: UIViewController {
     }
     
     func initPlayer() {
-        var playerItems: [AVPlayerItem]? = []
         let filePath = Bundle.main.path(forResource: songs?[curSongIndex].title, ofType: "mp3")
         let fileURL = URL(fileURLWithPath: filePath!)
         let avAsset = AVAsset(url: fileURL as URL)
         let assetKeys = ["playable"]
         let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
-        playerItems?.append(playerItem)
-        
-        if let playerItems = playerItems {
-            player = AVQueuePlayer(items: playerItems)
-        } else {
-            print("No songs available!")
-        }
+        player = AVPlayer(playerItem: playerItem)
         let interval = CMTime(value: 1, timescale: 2)
         player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
             let seconds = CMTimeGetSeconds(progressTime)
-            let finished = (self.curSongIndex >= Int(pow(2.0, Double(self.depthOfSongTree - 1))) - 1)
+            let finished = (self.curSongIndex >= Int(pow(2.0, Double(self.depthOfSongTree))) - 1)
             if seconds > 15 && !finished {
                 self.handleDislike()
                 return
             }
             self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded()), Int(seconds.truncatingRemainder(dividingBy: 60)))
         })
-        handlePlay()
     }
     
     @objc private func handleHeart() {
@@ -153,7 +144,7 @@ class DiscoveryViewController: UIViewController {
          player.pause()
     }
     
-    @objc private func handlePlay() {
+    @objc func handlePlay() {
         print("Trying to play")
         let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
         playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
@@ -227,9 +218,11 @@ class DiscoveryViewController: UIViewController {
     func showNextSong(likedCurSong: Bool) {
         if curSongIndex >= Int(pow(2.0, Double(depthOfSongTree - 1))) - 1 {
             print("All Songs have been displayed")
-            self.finalViewController.modalPresentationStyle = .fullScreen
-            self.finalViewController.modalTransitionStyle = .flipHorizontal
-            present(self.finalViewController, animated: true, completion: nil)
+            let finalViewController = FinalViewController()
+            addChild(finalViewController)
+            finalViewController.modalPresentationStyle = .fullScreen
+            finalViewController.modalTransitionStyle = .flipHorizontal
+            present(finalViewController, animated: true, completion: nil)
             return
         }
         if likedCurSong {
