@@ -43,6 +43,7 @@
 		5B8F7FF62373AD8D00BC30A9 /* Right Now.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEC2373AD8D00BC30A9 /* Right Now.mp3 */; };
 		5B8F7FF92373AEE800BC30A9 /* Brass Monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FF82373AEE700BC30A9 /* Brass Monkey.mp3 */; };
 		5B8F7FFB2373B14000BC30A9 /* Lucky.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FFA2373B14000BC30A9 /* Lucky.mp3 */; };
+		5BA53ADA237A2A66007D79D0 /* Lose Yourself.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BA53AD9237A2A66007D79D0 /* Lose Yourself.mp3 */; };
 		5BC1FC7F2366183400E59DCB /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC1FC7E2366183400E59DCB /* SongViewController.swift */; };
 		5BC4E6482368E497009FBC88 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E6472368E496009FBC88 /* Page.swift */; };
 		5BD73B622373F0F500B1A21B /* We Don't Care.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BD73B5D2373F0F500B1A21B /* We Don't Care.mp3 */; };
@@ -107,6 +108,7 @@
 		5B8F7FF72373ADF300BC30A9 /* All You Need To Know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "All You Need To Know.mp3"; sourceTree = "<group>"; };
 		5B8F7FF82373AEE700BC30A9 /* Brass Monkey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Brass Monkey.mp3"; sourceTree = "<group>"; };
 		5B8F7FFA2373B14000BC30A9 /* Lucky.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Lucky.mp3; sourceTree = "<group>"; };
+		5BA53AD9237A2A66007D79D0 /* Lose Yourself.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lose Yourself.mp3"; sourceTree = "<group>"; };
 		5BC1FC7E2366183400E59DCB /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		5BC4E6472368E496009FBC88 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		5BD73B5D2373F0F500B1A21B /* We Don't Care.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "We Don't Care.mp3"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				5B8F7FF82373AEE700BC30A9 /* Brass Monkey.mp3 */,
 				5B8F7FC92373AD8200BC30A9 /* Big Tipper.mp3 */,
 				5B8F7FC82373AD8100BC30A9 /* China Town.mp3 */,
+				5BA53AD9237A2A66007D79D0 /* Lose Yourself.mp3 */,
 				5B8F7FC12373AD7F00BC30A9 /* Downtown.mp3 */,
 				5B8F7FC22373AD8000BC30A9 /* God's Plan.mp3 */,
 				5B8F7FCC2373AD8300BC30A9 /* I am the Greatest.mp3 */,
@@ -350,6 +353,7 @@
 				5B8F7FB62373AD6F00BC30A9 /* All You Need To Know.mp3 in Resources */,
 				5B8F7FDA2373AD8400BC30A9 /* Immortal.mp3 in Resources */,
 				5B8F7FB52373AD6F00BC30A9 /* Never Seen The Rain.mp3 in Resources */,
+				5BA53ADA237A2A66007D79D0 /* Lose Yourself.mp3 in Resources */,
 				5BD73B652373F0F500B1A21B /* Spicy.mp3 in Resources */,
 				5B8F7FDC2373AD8400BC30A9 /* Big Tipper.mp3 in Resources */,
 				5BE0F495235CEE470026B2DD /* LaunchScreen.storyboard in Resources */,

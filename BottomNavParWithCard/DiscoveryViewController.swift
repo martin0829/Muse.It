@@ -80,7 +80,8 @@ class DiscoveryViewController: UIViewController {
         let interval = CMTime(value: 1, timescale: 2)
         player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
             let seconds = CMTimeGetSeconds(progressTime)
-            let finished = (self.curSongIndex >= Int(pow(2.0, Double(self.depthOfSongTree))) - 1)
+            let finished = (self.curSongIndex >= (self.songs?.count)! - 1)
+//            (self.curSongIndex >= Int(pow(2.0, Double(self.depthOfSongTree))) - 1)
             if seconds > 15 && !finished {
                 self.handleDislike()
                 return
@@ -216,19 +217,30 @@ class DiscoveryViewController: UIViewController {
     }
     
     func showNextSong(likedCurSong: Bool) {
-        if curSongIndex >= Int(pow(2.0, Double(depthOfSongTree - 1))) - 1 {
+//        if curSongIndex >= Int(pow(2.0, Double(depthOfSongTree - 1))) - 1 {
+//            print("All Songs have been displayed")
+//            let finalViewController = FinalViewController()
+//            addChild(finalViewController)
+//            finalViewController.modalPresentationStyle = .fullScreen
+//            finalViewController.modalTransitionStyle = .flipHorizontal
+//            present(finalViewController, animated: true, completion: nil)
+//            return
+//        }
+        if curSongIndex >= songs!.count - 1 {
             print("All Songs have been displayed")
             let finalViewController = FinalViewController()
-            addChild(finalViewController)
+//            addChild(finalViewController)
             finalViewController.modalPresentationStyle = .fullScreen
             finalViewController.modalTransitionStyle = .flipHorizontal
             present(finalViewController, animated: true, completion: nil)
             return
         }
         if likedCurSong {
-            curSongIndex = curSongIndex * 2 + 2
+//            curSongIndex = curSongIndex * 2 + 2
+            curSongIndex = curSongIndex + 1
         } else {
-            curSongIndex = curSongIndex * 2 + 1
+//            curSongIndex = curSongIndex * 2 + 1
+            curSongIndex = curSongIndex + 1
         }
         let nextSong: Song = (songs?[curSongIndex])!
         let image = UIImage(named: "\(nextSong.album ?? "")")
