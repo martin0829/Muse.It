@@ -27,7 +27,14 @@ class DiscoveryViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(cardView)
         view.addSubview(playControllerView)
-        view.backgroundColor = .white
+        let layer = CAGradientLayer()
+        layer.frame = view.bounds
+        layer.colors = [UIColor(red: 0x1D/255, green: 0xE5/255, blue: 0xE2/255, alpha: 1).cgColor, UIColor(red: 0xB5/255, green: 0x88/255, blue: 0xF7/255, alpha: 1).cgColor, UIColor(red: 0x1D/255, green: 0xE5/255, blue: 0xE2/255, alpha: 1).cgColor]
+        layer.locations = [0, 0.5, 1]
+        layer.startPoint = CGPoint(x:0.5,y: 0)
+        layer.endPoint = CGPoint(x:0.5,y: 1)
+        layer.zPosition = -100
+        view.layer.addSublayer(layer)
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Discovery"
         setupFinalTabBar()
@@ -150,7 +157,7 @@ class DiscoveryViewController: UIViewController {
     
     @objc private func handlePause() {
          print("Trying to pause")
-         let icon = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
+         let icon = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .bold))?.withTintColor(.white, renderingMode: .alwaysOriginal)
          playButton.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
          playButton.setImage(icon, for: .normal)
          player.pause()
@@ -158,7 +165,7 @@ class DiscoveryViewController: UIViewController {
     
     @objc func handlePlay() {
         print("Trying to play")
-        let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        let icon = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .bold))?.withTintColor(.white, renderingMode: .alwaysOriginal)
         playButton.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
         playButton.setImage(icon, for: .normal)
         if (player.currentItem != nil) {
@@ -183,16 +190,22 @@ class DiscoveryViewController: UIViewController {
     private func setupCardView() {
         cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         cardView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
-        cardView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.83).isActive = true
+        cardView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.75).isActive = true
         cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        thumbsImageView.contentMode = .scaleAspectFit
+        thumbsImageView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+        thumbsImageView.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
+        thumbsImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        thumbsImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        thumbsImageView.layer.zPosition = 1
 //        originalCardCenter = cardView.center
 //        print("Original card center: \(originalCardCenter)")
         
         //album image
         albumImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        albumImageView.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.80).isActive = true
+        albumImageView.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1).isActive = true
         albumImageView.heightAnchor.constraint(equalTo: albumImageView.widthAnchor, multiplier: 1).isActive = true
-        albumImageView.topAnchor.constraint(equalToSystemSpacingBelow: cardView.topAnchor, multiplier: 4).isActive = true
+        albumImageView.topAnchor.constraint(equalToSystemSpacingBelow: cardView.topAnchor, multiplier: 6).isActive = true
         
         //song title and artist
         titleTextView.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.8).isActive = true
@@ -215,16 +228,10 @@ class DiscoveryViewController: UIViewController {
         
         // play button
         playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        playButton.topAnchor.constraint(equalToSystemSpacingBelow: playControllerView.topAnchor, multiplier: 1).isActive = true
-        
-//        // slider
-//        slider.widthAnchor.constraint(equalTo: playControllerView.widthAnchor, multiplier: 0.8).isActive = true
-//        slider.centerXAnchor.constraint(equalTo: playControllerView.centerXAnchor).isActive = true
-//        slider.topAnchor.constraint(greaterThanOrEqualTo: playButton.bottomAnchor, constant: 5).isActive = true
-//        slider.bottomAnchor.constraint(lessThanOrEqualTo: lengthLabel.bottomAnchor, constant: -10).isActive = true
-//        //setup label
+        playButton.topAnchor.constraint(equalTo: playControllerView.topAnchor, constant: 50).isActive = true
+    
         lengthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        lengthLabel.bottomAnchor.constraint(equalTo: playControllerView.bottomAnchor, constant: -5).isActive = true
+        lengthLabel.topAnchor.constraint(equalTo: playButton.bottomAnchor, constant: 30).isActive = true
     }
     
     func showNextSong(likedCurSong: Bool) {
@@ -273,7 +280,7 @@ class DiscoveryViewController: UIViewController {
     
     func resetCard() {
         UIView.animate(withDuration: 0.1, animations: {
-            self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
+            self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 55)
             self.cardView.alpha = 1
             self.cardView.transform = .identity
             self.thumbsImageView.alpha = 0
@@ -290,7 +297,15 @@ class DiscoveryViewController: UIViewController {
         cardView.translatesAutoresizingMaskIntoConstraints = false
         cardView.layer.cornerRadius = 10.0
         cardView.layer.borderWidth = 6
-        cardView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.3)
+        let layer = CAGradientLayer()
+        layer.frame = cardView.bounds
+        layer.colors = [UIColor(red: 0x1D/255, green: 0xE5/255, blue: 0xE2/255, alpha: 1).cgColor, UIColor(red: 0xB5/255, green: 0x88/255, blue: 0xF7/255, alpha: 1).cgColor, UIColor(red: 0x1D/255, green: 0xE5/255, blue: 0xE2/255, alpha: 1).cgColor]
+        layer.locations = [0, 0.5, 1]
+        layer.startPoint = CGPoint(x:0.5,y: 0)
+        layer.endPoint = CGPoint(x:0.5,y: 1)
+        layer.zPosition = -100
+        cardView.layer.addSublayer(layer)
+        cardView.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 0.3)
         createPanGestureRecognizer(targetView: cardView)
         return cardView
     }()
