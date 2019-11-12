@@ -17,6 +17,8 @@ class DiscoveryViewController: UIViewController {
     var originalCardCenter: CGPoint? = nil
     let depthOfSongTree: Int = 4
     var genre: String? = nil
+    let finalViewController = FinalViewController()
+    
 
     
     //----------------------- Functions --------------------------- //
@@ -28,9 +30,17 @@ class DiscoveryViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Discovery"
-        
+        setupFinalTabBar()
         setupCardView()
         setupPlayControllerView()
+    }
+    func setupFinalTabBar() {
+        finalViewController.tabBar.barTintColor = UIColor(red: 38/255, green: 196/255, blue: 133/255, alpha: 0.5)
+        let feedbackViewController = FeedbackViewController()
+        feedbackViewController.tabBarItem.image = UIImage(systemName: "music.note")
+        let libraryViewController = LibraryViewController()
+        libraryViewController.tabBarItem.image = UIImage(systemName: "music.note.list")
+        finalViewController.viewControllers = [feedbackViewController, libraryViewController]
     }
     
     func setGenreAndGetSong(genre: String) {
@@ -51,7 +61,7 @@ class DiscoveryViewController: UIViewController {
     
     func addCurSongToLibrary() {
         print("Trying to add song to my library")
-        let libraryViewController = self.tabBarController!.viewControllers![1] as! LibraryViewController
+        let libraryViewController = finalViewController.viewControllers![1] as! LibraryViewController
         libraryViewController.addSong((songs?[curSongIndex])!)
     }
     
@@ -64,6 +74,7 @@ class DiscoveryViewController: UIViewController {
     func enterCard() {
         self.cardView.transform = .identity
         self.cardView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
+        print("Printing card's center y: \(self.cardView.center)")
         self.thumbsImageView.alpha = 0
         UIView.animate(withDuration: 0.3, animations: {
             self.cardView.alpha = 1
@@ -228,7 +239,6 @@ class DiscoveryViewController: UIViewController {
 //        }
         if curSongIndex >= songs!.count - 1 {
             print("All Songs have been displayed")
-            let finalViewController = FinalViewController()
 //            addChild(finalViewController)
             finalViewController.modalPresentationStyle = .fullScreen
             finalViewController.modalTransitionStyle = .flipHorizontal
@@ -380,11 +390,9 @@ class DiscoveryViewController: UIViewController {
     
     let lengthLabel: UILabel = {
        let label = UILabel()
+        label.textColor = .black
         label.text = "00:00"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
-
 }

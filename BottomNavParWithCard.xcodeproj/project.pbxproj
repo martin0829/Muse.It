@@ -42,7 +42,8 @@
 		5B8F7FF42373AD8D00BC30A9 /* Rushing Back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEA2373AD8D00BC30A9 /* Rushing Back.mp3 */; };
 		5B8F7FF62373AD8D00BC30A9 /* Right Now.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FEC2373AD8D00BC30A9 /* Right Now.mp3 */; };
 		5B8F7FF92373AEE800BC30A9 /* Brass Monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FF82373AEE700BC30A9 /* Brass Monkey.mp3 */; };
-		5B8F7FFB2373B14000BC30A9 /* Lucky.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FFA2373B14000BC30A9 /* Lucky.mp3 */; };
+		5BA11718237B3E9100D3386D /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA11717237B3E9100D3386D /* FeedbackViewController.swift */; };
+		5BA1DA42237A37F300004F52 /* Lucky.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1DA41237A37F300004F52 /* Lucky.mp3 */; };
 		5BA53ADA237A2A66007D79D0 /* Lose Yourself.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BA53AD9237A2A66007D79D0 /* Lose Yourself.mp3 */; };
 		5BC1FC7F2366183400E59DCB /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC1FC7E2366183400E59DCB /* SongViewController.swift */; };
 		5BC4E6482368E497009FBC88 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E6472368E496009FBC88 /* Page.swift */; };
@@ -107,7 +108,8 @@
 		5B8F7FEC2373AD8D00BC30A9 /* Right Now.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Right Now.mp3"; sourceTree = "<group>"; };
 		5B8F7FF72373ADF300BC30A9 /* All You Need To Know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "All You Need To Know.mp3"; sourceTree = "<group>"; };
 		5B8F7FF82373AEE700BC30A9 /* Brass Monkey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Brass Monkey.mp3"; sourceTree = "<group>"; };
-		5B8F7FFA2373B14000BC30A9 /* Lucky.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Lucky.mp3; sourceTree = "<group>"; };
+		5BA11717237B3E9100D3386D /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		5BA1DA41237A37F300004F52 /* Lucky.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Lucky.mp3; sourceTree = "<group>"; };
 		5BA53AD9237A2A66007D79D0 /* Lose Yourself.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lose Yourself.mp3"; sourceTree = "<group>"; };
 		5BC1FC7E2366183400E59DCB /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		5BC4E6472368E496009FBC88 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -151,7 +153,7 @@
 		5B8F7FA22373AD0700BC30A9 /* Pop */ = {
 			isa = PBXGroup;
 			children = (
-				5B8F7FFA2373B14000BC30A9 /* Lucky.mp3 */,
+				5BA1DA41237A37F300004F52 /* Lucky.mp3 */,
 				5B8F7FAA2373AD6D00BC30A9 /* All You Need To Know.mp3 */,
 				5B8F7FAD2373AD6E00BC30A9 /* Broke.mp3 */,
 				5B8F7FAB2373AD6D00BC30A9 /* Chelsea Cutler.mp3 */,
@@ -242,6 +244,7 @@
 				5BE0F4A1235CF3E70026B2DD /* SongAPI.swift */,
 				5BE0F488235CEE440026B2DD /* AppDelegate.swift */,
 				5B12E8D7236FFD2D00F17700 /* FinalViewController.swift */,
+				5BA11717237B3E9100D3386D /* FeedbackViewController.swift */,
 				5BE0F48A235CEE440026B2DD /* SceneDelegate.swift */,
 				5BE0F48C235CEE440026B2DD /* MainViewController.swift */,
 				5BE0F491235CEE470026B2DD /* Assets.xcassets */,
@@ -337,7 +340,6 @@
 				5B8F7FD82373AD8400BC30A9 /* Too Fast.mp3 in Resources */,
 				5BD73B722373F22D00B1A21B /* Flying On My Own.mp3 in Resources */,
 				5B8F7FF92373AEE800BC30A9 /* Brass Monkey.mp3 in Resources */,
-				5B8F7FFB2373B14000BC30A9 /* Lucky.mp3 in Resources */,
 				5B8F7FF62373AD8D00BC30A9 /* Right Now.mp3 in Resources */,
 				5B8F7FD42373AD8400BC30A9 /* Downtown.mp3 in Resources */,
 				5BD73B6C2373F14A00B1A21B /* All Around The World.mp3 in Resources */,
@@ -353,6 +355,7 @@
 				5B8F7FB62373AD6F00BC30A9 /* All You Need To Know.mp3 in Resources */,
 				5B8F7FDA2373AD8400BC30A9 /* Immortal.mp3 in Resources */,
 				5B8F7FB52373AD6F00BC30A9 /* Never Seen The Rain.mp3 in Resources */,
+				5BA1DA42237A37F300004F52 /* Lucky.mp3 in Resources */,
 				5BA53ADA237A2A66007D79D0 /* Lose Yourself.mp3 in Resources */,
 				5BD73B652373F0F500B1A21B /* Spicy.mp3 in Resources */,
 				5B8F7FDC2373AD8400BC30A9 /* Big Tipper.mp3 in Resources */,
@@ -393,6 +396,7 @@
 				5BE0F49D235CEF3E0026B2DD /* LibraryViewController.swift in Sources */,
 				5BF44354236AA160002527F5 /* PageView.swift in Sources */,
 				5BE0F48B235CEE440026B2DD /* SceneDelegate.swift in Sources */,
+				5BA11718237B3E9100D3386D /* FeedbackViewController.swift in Sources */,
 				5BE0F49F235CEF490026B2DD /* DiscoveryViewController.swift in Sources */,
 				5BF44356236AA43B002527F5 /* SwipeViewController.swift in Sources */,
 			);

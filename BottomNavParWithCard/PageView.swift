@@ -35,6 +35,7 @@ class PageView: UIView {
     
     private func setupSpecialLayout() {
         let textView = UITextView()
+        textView.backgroundColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         let style = NSMutableParagraphStyle()
@@ -109,11 +110,10 @@ class PageView: UIView {
     
     @objc func handlePopButton() {
         print("Handling pop button")
-        let mainViewController = MainViewController()
-        let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
+        let discoveryViewController = DiscoveryViewController()
         discoveryViewController.setGenreAndGetSong(genre: "Pop")
         
-        self.window!.rootViewController = mainViewController
+        self.window!.rootViewController = discoveryViewController
         UIView.transition(with: self, duration: 0.0, options: .transitionFlipFromTop, animations: {}, completion: { finished in
                 discoveryViewController.handlePlay()
                 print("Finished transition")
