@@ -23,9 +23,9 @@ class SongAPI {
                 Song(title: "Lose You To Love Me", artist: "Selena Gomez", genre: "Pop", album: "loseyoutoloveme_album"),
                 Song(title: "Easy", artist: "Camila Cabello", genre: "Pop", album: "easy_album"),
                 Song(title: "Broke", artist: "Samm Henshaw", genre: "Pop", album: "broke_album"),
-                Song(title: "Never Seen The Rain", artist: "Tones and I", genre: "Pop", album: "neverseentherain_album"),
+//                Song(title: "Never Seen The Rain", artist: "Tones and I", genre: "Pop", album: "neverseentherain_album"),
                 Song(title: "Good As Hell", artist: "Lizzo", genre: "Pop", album: "goodashell_album"),
-                Song(title: "Good As Hell", artist: "Lizzo", genre: "Pop", album: "goodashell_album"),
+//                Song(title: "Good As Hell", artist: "Lizzo", genre: "Pop", album: "goodashell_album"),
                 Song(title: "Me Necesita", artist: "PRETTYMUCH", genre: "Pop", album: "menecesita_album")
             ]
         } else if genre == "Hip Hop" {
