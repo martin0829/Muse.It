@@ -122,11 +122,10 @@ class PageView: UIView {
     
     @objc func handleHipHopButton() {
         print("Handling Hip Hop button")
-        let mainViewController = MainViewController()
-        let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
+        let discoveryViewController = DiscoveryViewController()
         discoveryViewController.setGenreAndGetSong(genre: "Hip Hop")
         
-        self.window!.rootViewController = mainViewController
+        self.window!.rootViewController = discoveryViewController
         UIView.transition(with: self, duration: 0.0, options: .transitionFlipFromTop, animations: {}, completion: { finished in
                 discoveryViewController.handlePlay()
                 print("Finished transition")
@@ -136,11 +135,10 @@ class PageView: UIView {
     
     @objc func handleEDMButton() {
         print("Handling EDM button")
-        let mainViewController = MainViewController()
-        let discoveryViewController = mainViewController.viewControllers![0] as! DiscoveryViewController
+        let discoveryViewController = DiscoveryViewController()
         discoveryViewController.setGenreAndGetSong(genre: "EDM")
         
-        self.window!.rootViewController = mainViewController
+        self.window!.rootViewController = discoveryViewController
         UIView.transition(with: self, duration: 0.0, options: .transitionFlipFromTop, animations: {}, completion: { finished in
                 discoveryViewController.handlePlay()
                 print("Finished transition")

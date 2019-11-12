@@ -23,6 +23,8 @@ class LibraryViewController: UIViewController, UITableViewDataSource, UITableVie
         songViewController.player.replaceCurrentItem(with: playerItem)
         songViewController.updateCardView()
         present(songViewController, animated: true, completion: {
+            let discoveryViewController = self.tabBarController?.presentingViewController as! DiscoveryViewController
+            discoveryViewController.player.pause()
             self.songViewController.handlePlay()
         })
     }
