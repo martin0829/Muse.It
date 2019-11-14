@@ -96,16 +96,17 @@ class DiscoveryViewController: UIViewController {
         let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
         player = AVPlayer(playerItem: playerItem)
         let interval = CMTime(value: 1, timescale: 2)
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+
         player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
             let seconds = CMTimeGetSeconds(progressTime)
-            let finished = (self.curSongIndex >= (self.songs?.count)! - 1)
-//            (self.curSongIndex >= Int(pow(2.0, Double(self.depthOfSongTree))) - 1)
-            if seconds > 15 && !finished {
-                self.handleDislike()
-                return
-            }
-            self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded()), Int(seconds.truncatingRemainder(dividingBy: 60)))
+            self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded(.down)), Int(seconds.truncatingRemainder(dividingBy: 60)))
         })
+    }
+    
+    @objc private func playerDidFinishPlaying() {
+        print("Item finished playing")
+        self.handleDislike()
     }
     
     @objc private func handleHeart() {
@@ -287,6 +288,12 @@ class DiscoveryViewController: UIViewController {
         })
     }
     
+    @objc func cardTapped() {
+        print("card tapped")
+        let seekTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(player.currentTime()) + 15, preferredTimescale: 1);
+        player.seek(to: seekTime)
+    }
+    
     //----------------------- UI Elements --------------------------- //
     lazy var cardView: UIView = {
         let cardView = UIView()
@@ -307,6 +314,8 @@ class DiscoveryViewController: UIViewController {
         cardView.layer.addSublayer(layer)
         cardView.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 0.3)
         createPanGestureRecognizer(targetView: cardView)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(cardTapped))
+        cardView.addGestureRecognizer(tapGestureRecognizer)
         return cardView
     }()
     
