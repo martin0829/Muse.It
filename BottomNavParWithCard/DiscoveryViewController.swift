@@ -108,12 +108,13 @@ class DiscoveryViewController: UIViewController {
                 return
             }
             let seconds = CMTimeGetSeconds(progressTime)
-            if (seconds != 0  || self.songs![self.curSongIndex].timestamp! == "0:00") {
-                self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded(.down)), Int(seconds.truncatingRemainder(dividingBy: 60)))
-            }
             let minuteSecondArray = self.songs![self.curSongIndex].timestamp!.components(separatedBy: ":")
             let time = Int64(minuteSecondArray[0])! * 60 + Int64(minuteSecondArray[1])!
-            if Int64(seconds) > 15 + time {
+            let time_remaining = 15 - (seconds - Double(time))
+            if (seconds != 0  || self.songs![self.curSongIndex].timestamp! == "0:00") {
+                self.lengthLabel.text = String(format: "00:%02d", Int64(time_remaining))
+            }
+            if Int64(seconds) > 15 + time && self.curSongIndex < self.songs!.count - 1 {
                 self.handleDislike()
             }
         })
@@ -294,7 +295,7 @@ class DiscoveryViewController: UIViewController {
         player.replaceCurrentItem(with: playerItem)
         let minuteSecondArray = nextSong.timestamp!.components(separatedBy: ":")
         let time = Int64(minuteSecondArray[0])! * 60 + Int64(minuteSecondArray[1])!
-        lengthLabel.text = "0" + nextSong.timestamp!
+//        lengthLabel.text = "0" + nextSong.timestamp!
         player.seek(to: CMTime(value: time, timescale: 1))
         player.play()
         enterCard()
