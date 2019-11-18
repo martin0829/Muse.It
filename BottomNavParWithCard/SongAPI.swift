@@ -12,7 +12,7 @@ class SongAPI {
         var songs: [Song]? = nil
         if genre == "Pop" {
             songs = [
-                Song(title: "Find An Island", artist: "BENEE", genre: "Pop", album: "findanisland_album", timestamp:"01:30"),
+                Song(title: "Find An Island", artist: "BENEE", genre: "Pop", album: "findanisland_album", timestamp:"1:30"),
                 Song(title: "Kinfolks", artist: "Sam Hunt", genre: "Pop", album: "kinfolks_album"),
                 Song(title: "Don't Start Now", artist: "Dua Lipa", genre: "Pop", album: "dontstartnow_album"),
                 Song(title: "Lucky", artist: "Chelsea Cutler", genre: "Pop", album: "lucky_album"),
