@@ -290,7 +290,7 @@ class DiscoveryViewController: UIViewController {
     
     @objc func cardTapped() {
         print("card tapped")
-        let seekTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(player.currentTime()) + 15, preferredTimescale: 1);
+        let seekTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(player.currentTime()) + 25, preferredTimescale: 1);
         player.seek(to: seekTime)
     }
     
