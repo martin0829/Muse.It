@@ -35,23 +35,23 @@ class SongAPI {
                 Song(title: "Indigo", artist: "88rising & niki", genre: "Pop", album: "indigo_album", timestamp:"2:17")
             ]
         } else if genre == "Hip Hop" {
-//            songs = [
-//                Song(title: "Panini", artist: "Lil Nas X", genre: "Pop", album: "panini_album"),
-//                Song(title: "Downtown", artist: "Macklemore", genre: "Pop", album: "downtown_album"),
-//                Song(title: "Immortal", artist: "21 Savage", genre: "Pop", album: "immortal_album"),
-//                Song(title: "Lose Yourself", artist: "Eminem", genre: "Pop", album: "loseyourself_album"),
-//                Song(title: "Brass Monkey", artist: "Beastie Boys", genre: "Pop", album: "brassmonkey_album"),
-//                Song(title: "Straight Outta Compton", artist: "NWA", genre: "Pop", album: "straightouttacompton_album"),
-//                Song(title: "God's Plan", artist: "Drake", genre: "Pop", album: "godsplan_album"),
-//                Song(title: "Send It Up", artist: "Kanye West", genre: "Pop", album: "senditup_album"),
-//                Song(title: "Me You", artist: "Russ", genre: "Pop", album: "meyou_album"),
-//                Song(title: "I am the Greatest", artist: "Logic", genre: "Pop", album: "iamthegreatest_album"),
-//                Song(title: "My Adidas", artist: "Run DMC", genre: "Pop", album: "myadidas_album"),
-//                Song(title: "When I Grow Up", artist: "NF", genre: "Pop", album: "whenigrowup_album"),
-//                Song(title: "Too Fast", artist: "AKLO", genre: "Pop", album: "toofast_album"),
-//                Song(title: "Shut em Down", artist: "Public Enemy", genre: "Pop", album: "shutemdown_album"),
-//                Song(title: "Big Tipper", artist: "Young Thug", genre: "Pop", album: "bigtipper_album")
-//            ]
+            songs = [
+                Song(title: "Panini", artist: "Lil Nas X", genre: "Pop", album: "panini_album", timestamp:"0:25"),
+                Song(title: "Downtown", artist: "Macklemore", genre: "Pop", album: "downtown_album", timestamp:"1:06"),
+                Song(title: "Immortal", artist: "21 Savage", genre: "Pop", album: "immortal_album", timestamp:"2:30"),
+                Song(title: "Lose Yourself", artist: "Eminem", genre: "Pop", album: "loseyourself_album", timestamp:"1:00"),
+                Song(title: "Brass Monkey", artist: "Beastie Boys", genre: "Pop", album: "brassmonkey_album", timestamp:"0:14"),
+                Song(title: "Straight Outta Compton", artist: "NWA", genre: "Pop", album: "straightouttacompton_album", timestamp:"0:10"),
+                Song(title: "God's Plan", artist: "Drake", genre: "Pop", album: "godsplan_album", timestamp:"0:40"),
+                Song(title: "Send It Up", artist: "Kanye West", genre: "Pop", album: "senditup_album", timestamp:"1:20"),
+                Song(title: "Me You", artist: "Russ", genre: "Pop", album: "meyou_album", timestamp:"0:39"),
+                Song(title: "I am the Greatest", artist: "Logic", genre: "Pop", album: "iamthegreatest_album", timestamp:"1:00"),
+                Song(title: "My Adidas", artist: "Run DMC", genre: "Pop", album: "myadidas_album", timestamp:"0:00"),
+                Song(title: "When I Grow Up", artist: "NF", genre: "Pop", album: "whenigrowup_album", timestamp:"0:20"),
+                Song(title: "Too Fast", artist: "AKLO", genre: "Pop", album: "toofast_album", timestamp:"0:20"),
+                Song(title: "Shut em Down", artist: "Public Enemy", genre: "Pop", album: "shutemdown_album", timestamp:"0:50"),
+                Song(title: "Big Tipper", artist: "Young Thug", genre: "Pop", album: "bigtipper_album", timestamp:"0:30")
+            ]
         } else {
             songs = [
                 Song(title: "All You Need To Know", artist: "Gryffin, Slander", genre: "EDM", album: "allyouneedtoknow_album", timestamp: "3:11"),
