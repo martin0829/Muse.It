@@ -11,4 +11,5 @@ struct Song {
     let artist: String?
     let genre: String?
     let album: String?
+    let timestamp: String?
 }
