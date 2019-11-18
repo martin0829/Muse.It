@@ -104,7 +104,7 @@ class DiscoveryViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
 
         player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
-            if self.curSongIndex >= (self.songs?.count)! - 1 {
+            if self.curSongIndex >= (self.songs?.count)! {
                 return
             }
             let seconds = CMTimeGetSeconds(progressTime)
