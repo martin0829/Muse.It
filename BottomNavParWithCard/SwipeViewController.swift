@@ -16,9 +16,9 @@ class SwipeViewController: UIViewController, UIScrollViewDelegate {
     let scrollView: UIScrollView = UIScrollView()
 
     let pages = [
-    Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Quickly discover new music with by swiping left or right", hasSpecialLayout: false),
     Page(imageName: "fifteen", headerText: "Tired of listening to whole songs?", bodyText: "We curate the 15 seconds of the hottest part of the song for your convenience.", hasSpecialLayout: false),
-    Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasSpecialLayout: false),
+    Page(imageName: "logo", headerText: "Only a swipe away from your next favorite song", bodyText: "Swipe right if you like a song. Swipe left if you don't like a song", hasSpecialLayout: false),
+    Page(imageName: "library", headerText: "Your Playlist", bodyText: "You can listen to the full favorited songs by visiting the library at the end.", hasSpecialLayout: false),
     Page(imageName: "library", headerText: "In a glance", bodyText: "You can listen to your favorited songs anytime by visiting the library.", hasSpecialLayout: true),
     ]
     

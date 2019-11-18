@@ -172,7 +172,7 @@ class PageView: UIView {
         descView.topAnchor.constraint(equalTo: bottomContainerView.topAnchor).isActive = true
         descView.leftAnchor.constraint(equalTo: bottomContainerView.leftAnchor, constant: 30).isActive = true
         descView.rightAnchor.constraint(equalTo: bottomContainerView.rightAnchor, constant: -30).isActive = true
-        descView.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 0.5).isActive = true
+        descView.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 1).isActive = true
     }
     
     private let imageView: UIImageView = {

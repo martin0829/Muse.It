@@ -42,7 +42,9 @@ class DiscoveryViewController: UIViewController {
         setupPlayControllerView()
     }
     func setupFinalTabBar() {
-        finalViewController.tabBar.barTintColor = UIColor(red: 38/255, green: 196/255, blue: 133/255, alpha: 0.5)
+        finalViewController.tabBar.barTintColor = UIColor(red: 0x2F/255, green: 0x8D/255, blue: 0xFF/255, alpha: 0.5)
+        finalViewController.tabBar.unselectedItemTintColor = .black
+        finalViewController.tabBar.tintColor = .white
         let feedbackViewController = FeedbackViewController()
         feedbackViewController.tabBarItem.image = UIImage(systemName: "music.note")
         let libraryViewController = LibraryViewController()
