@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5B12E8D8236FFD2D00F17700 /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12E8D7236FFD2D00F17700 /* FinalViewController.swift */; };
+		5B67F16F23825B5100347043 /* Chasing Cars.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B67F16823825B4F00347043 /* Chasing Cars.mp3 */; };
+		5B67F17023825B5100347043 /* Indigo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B67F16923825B4F00347043 /* Indigo.mp3 */; };
+		5B67F17123825B5100347043 /* Hold It Down.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B67F16A23825B4F00347043 /* Hold It Down.mp3 */; };
+		5B67F17223825B5100347043 /* Sunkissed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B67F16B23825B4F00347043 /* Sunkissed.mp3 */; };
+		5B67F17323825B5100347043 /* Bohemian Rhapsody.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B67F16C23825B5000347043 /* Bohemian Rhapsody.mp3 */; };
+		5B67F17423825B5100347043 /* Undrunk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B67F16D23825B5000347043 /* Undrunk.mp3 */; };
+		5B67F17523825B5100347043 /* Photosynthesis.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B67F16E23825B5100347043 /* Photosynthesis.mp3 */; };
 		5B8F7FB12373AD6F00BC30A9 /* Good As Hell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FA52373AD6B00BC30A9 /* Good As Hell.mp3 */; };
 		5B8F7FB22373AD6F00BC30A9 /* Lose You To Love Me.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FA62373AD6C00BC30A9 /* Lose You To Love Me.mp3 */; };
 		5B8F7FB32373AD6F00BC30A9 /* Kinfolks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F7FA72373AD6C00BC30A9 /* Kinfolks.mp3 */; };
@@ -73,6 +80,13 @@
 
 /* Begin PBXFileReference section */
 		5B12E8D7236FFD2D00F17700 /* FinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
+		5B67F16823825B4F00347043 /* Chasing Cars.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chasing Cars.mp3"; sourceTree = "<group>"; };
+		5B67F16923825B4F00347043 /* Indigo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Indigo.mp3; sourceTree = "<group>"; };
+		5B67F16A23825B4F00347043 /* Hold It Down.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hold It Down.mp3"; sourceTree = "<group>"; };
+		5B67F16B23825B4F00347043 /* Sunkissed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sunkissed.mp3; sourceTree = "<group>"; };
+		5B67F16C23825B5000347043 /* Bohemian Rhapsody.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bohemian Rhapsody.mp3"; sourceTree = "<group>"; };
+		5B67F16D23825B5000347043 /* Undrunk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Undrunk.mp3; sourceTree = "<group>"; };
+		5B67F16E23825B5100347043 /* Photosynthesis.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Photosynthesis.mp3; sourceTree = "<group>"; };
 		5B8F7FA52373AD6B00BC30A9 /* Good As Hell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Good As Hell.mp3"; sourceTree = "<group>"; };
 		5B8F7FA62373AD6C00BC30A9 /* Lose You To Love Me.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lose You To Love Me.mp3"; sourceTree = "<group>"; };
 		5B8F7FA72373AD6C00BC30A9 /* Kinfolks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Kinfolks.mp3; sourceTree = "<group>"; };
@@ -153,6 +167,13 @@
 		5B8F7FA22373AD0700BC30A9 /* Pop */ = {
 			isa = PBXGroup;
 			children = (
+				5B67F16C23825B5000347043 /* Bohemian Rhapsody.mp3 */,
+				5B67F16823825B4F00347043 /* Chasing Cars.mp3 */,
+				5B67F16A23825B4F00347043 /* Hold It Down.mp3 */,
+				5B67F16923825B4F00347043 /* Indigo.mp3 */,
+				5B67F16E23825B5100347043 /* Photosynthesis.mp3 */,
+				5B67F16B23825B4F00347043 /* Sunkissed.mp3 */,
+				5B67F16D23825B5000347043 /* Undrunk.mp3 */,
 				5BA1DA41237A37F300004F52 /* Lucky.mp3 */,
 				5B8F7FAA2373AD6D00BC30A9 /* All You Need To Know.mp3 */,
 				5B8F7FAD2373AD6E00BC30A9 /* Broke.mp3 */,
@@ -333,12 +354,14 @@
 				5BD73B6B2373F14A00B1A21B /* Trigger.mp3 in Resources */,
 				5BD73B742373F24600B1A21B /* Colour.mp3 in Resources */,
 				5B8F7FD32373AD8400BC30A9 /* Shut em Down.mp3 in Resources */,
+				5B67F17123825B5100347043 /* Hold It Down.mp3 in Resources */,
 				5BD73B702373F21400B1A21B /* Something About You.mp3 in Resources */,
 				5B8F7FD72373AD8400BC30A9 /* My Adidas.mp3 in Resources */,
 				5B8F7FBA2373AD6F00BC30A9 /* Easy.mp3 in Resources */,
 				5B8F7FBB2373AD6F00BC30A9 /* Don't Start Now.mp3 in Resources */,
 				5B8F7FD82373AD8400BC30A9 /* Too Fast.mp3 in Resources */,
 				5BD73B722373F22D00B1A21B /* Flying On My Own.mp3 in Resources */,
+				5B67F17323825B5100347043 /* Bohemian Rhapsody.mp3 in Resources */,
 				5B8F7FF92373AEE800BC30A9 /* Brass Monkey.mp3 in Resources */,
 				5B8F7FF62373AD8D00BC30A9 /* Right Now.mp3 in Resources */,
 				5B8F7FD42373AD8400BC30A9 /* Downtown.mp3 in Resources */,
@@ -347,6 +370,7 @@
 				5B8F7FF42373AD8D00BC30A9 /* Rushing Back.mp3 in Resources */,
 				5B8F7FB72373AD6F00BC30A9 /* Chelsea Cutler.mp3 in Resources */,
 				5B8F7FF22373AD8D00BC30A9 /* Beach House.mp3 in Resources */,
+				5B67F17223825B5100347043 /* Sunkissed.mp3 in Resources */,
 				5B8F7FB32373AD6F00BC30A9 /* Kinfolks.mp3 in Resources */,
 				5B8F7FD52373AD8400BC30A9 /* God's Plan.mp3 in Resources */,
 				5B8F7FDB2373AD8400BC30A9 /* China Town.mp3 in Resources */,
@@ -354,14 +378,18 @@
 				5B8F7FDF2373AD8400BC30A9 /* I am the Greatest.mp3 in Resources */,
 				5B8F7FB62373AD6F00BC30A9 /* All You Need To Know.mp3 in Resources */,
 				5B8F7FDA2373AD8400BC30A9 /* Immortal.mp3 in Resources */,
+				5B67F17023825B5100347043 /* Indigo.mp3 in Resources */,
 				5B8F7FB52373AD6F00BC30A9 /* Never Seen The Rain.mp3 in Resources */,
 				5BA1DA42237A37F300004F52 /* Lucky.mp3 in Resources */,
 				5BA53ADA237A2A66007D79D0 /* Lose Yourself.mp3 in Resources */,
 				5BD73B652373F0F500B1A21B /* Spicy.mp3 in Resources */,
+				5B67F17423825B5100347043 /* Undrunk.mp3 in Resources */,
+				5B67F17523825B5100347043 /* Photosynthesis.mp3 in Resources */,
 				5B8F7FDC2373AD8400BC30A9 /* Big Tipper.mp3 in Resources */,
 				5BE0F495235CEE470026B2DD /* LaunchScreen.storyboard in Resources */,
 				5B8F7FE02373AD8400BC30A9 /* Me You.mp3 in Resources */,
 				5B8F7FE22373AD8400BC30A9 /* Monster.mp3 in Resources */,
+				5B67F16F23825B5100347043 /* Chasing Cars.mp3 in Resources */,
 				5B8F7FF32373AD8D00BC30A9 /* Only You.mp3 in Resources */,
 				5B8F7FD92373AD8400BC30A9 /* When I Grow Up.mp3 in Resources */,
 				5BD73B762373F76E00B1A21B /* Beautiful Now.mp3 in Resources */,

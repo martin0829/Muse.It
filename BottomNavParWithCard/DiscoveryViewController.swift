@@ -102,13 +102,26 @@ class DiscoveryViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
 
         player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
+            if self.curSongIndex >= (self.songs?.count)! - 1 {
+                return
+            }
             let seconds = CMTimeGetSeconds(progressTime)
-            self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded(.down)), Int(seconds.truncatingRemainder(dividingBy: 60)))
+            if (seconds != 0  || self.songs![self.curSongIndex].timestamp! == "0:00") {
+                self.lengthLabel.text = String(format: "%02d:%02d", Int((seconds/60).rounded(.down)), Int(seconds.truncatingRemainder(dividingBy: 60)))
+            }
+            let minuteSecondArray = self.songs![self.curSongIndex].timestamp!.components(separatedBy: ":")
+            let time = Int64(minuteSecondArray[0])! * 60 + Int64(minuteSecondArray[1])!
+            if Int64(seconds) > 15 + time {
+                self.handleDislike()
+            }
         })
     }
     
     @objc private func playerDidFinishPlaying() {
         print("Item finished playing")
+        if self.curSongIndex >= (self.songs?.count)! - 1 {
+            return
+        }
         self.handleDislike()
     }
     
@@ -248,7 +261,7 @@ class DiscoveryViewController: UIViewController {
 //            present(finalViewController, animated: true, completion: nil)
 //            return
 //        }
-        if curSongIndex >= songs!.count - 1 {
+        if curSongIndex == songs!.count - 1 {
             print("All Songs have been displayed")
 //            addChild(finalViewController)
             finalViewController.modalPresentationStyle = .fullScreen
@@ -270,6 +283,7 @@ class DiscoveryViewController: UIViewController {
         attributedText.append(NSMutableAttributedString(string: "\n\(nextSong.artist ?? "")", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 20)]))
         titleTextView.attributedText = attributedText
         titleTextView.textAlignment = .center
+        
         let filePath = Bundle.main.path(forResource: nextSong.title, ofType: "mp3")
         let fileURL = URL(fileURLWithPath: filePath!)
         let avAsset = AVAsset(url: fileURL as URL)
@@ -278,6 +292,7 @@ class DiscoveryViewController: UIViewController {
         player.replaceCurrentItem(with: playerItem)
         let minuteSecondArray = nextSong.timestamp!.components(separatedBy: ":")
         let time = Int64(minuteSecondArray[0])! * 60 + Int64(minuteSecondArray[1])!
+        lengthLabel.text = "0" + nextSong.timestamp!
         player.seek(to: CMTime(value: time, timescale: 1))
         player.play()
         enterCard()
