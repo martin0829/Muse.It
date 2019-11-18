@@ -375,8 +375,8 @@ class DiscoveryViewController: UIViewController {
     
     
     let heartButtonView: UIButton = {
-        let green = UIColor(displayP3Red: 80/255, green: 200/255, blue: 120/255, alpha: 1.0)
-        let image = UIImage(systemName: "heart.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(.green, renderingMode: .alwaysOriginal)
+        let green = UIColor(displayP3Red: 131/255, green: 191/255, blue: 230/255, alpha: 1.0)
+        let image = UIImage(systemName: "heart.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(green, renderingMode: .alwaysOriginal)
         let button = UIButton()
         button.setBackgroundImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -385,7 +385,8 @@ class DiscoveryViewController: UIViewController {
     }()
     
     let dislikeButtonView: UIButton = {
-        let image = UIImage(systemName: "heart.slash.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        let red = UIColor(displayP3Red: 200/255, green: 109/255, blue: 169/255, alpha: 0.8)
+        let image = UIImage(systemName: "heart.slash.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 65, weight: .bold))?.withTintColor(red, renderingMode: .alwaysOriginal)
         let button = UIButton()
         button.setBackgroundImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
