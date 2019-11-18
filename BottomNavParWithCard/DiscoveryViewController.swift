@@ -95,6 +95,9 @@ class DiscoveryViewController: UIViewController {
         let assetKeys = ["playable"]
         let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
         player = AVPlayer(playerItem: playerItem)
+        let minuteSecondArray = songs?[curSongIndex].timestamp!.components(separatedBy: ":")
+        let time = Int64(minuteSecondArray![0])! * 60 + Int64(minuteSecondArray![1])!
+        player.seek(to: CMTime(value: time, timescale: 1))
         let interval = CMTime(value: 1, timescale: 2)
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
 
@@ -273,8 +276,10 @@ class DiscoveryViewController: UIViewController {
         let assetKeys = ["playable"]
         let playerItem = AVPlayerItem(asset: avAsset, automaticallyLoadedAssetKeys: assetKeys)
         player.replaceCurrentItem(with: playerItem)
+        let minuteSecondArray = nextSong.timestamp!.components(separatedBy: ":")
+        let time = Int64(minuteSecondArray[0])! * 60 + Int64(minuteSecondArray[1])!
+        player.seek(to: CMTime(value: time, timescale: 1))
         player.play()
-//        player?.seek(to: CMTime(value: Int64(nextSong.startTime), timescale: 1))
         enterCard()
         handlePlay()
     }
@@ -290,8 +295,8 @@ class DiscoveryViewController: UIViewController {
     
     @objc func cardTapped() {
         print("card tapped")
-        let seekTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(player.currentTime()) + 25, preferredTimescale: 1);
-        player.seek(to: seekTime)
+//        let seekTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(player.currentTime()) + 25, preferredTimescale: 1);
+//        player.seek(to: seekTime)
     }
     
     //----------------------- UI Elements --------------------------- //
