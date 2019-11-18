@@ -12,21 +12,30 @@ class SongAPI {
         var songs: [Song]? = nil
         if genre == "Pop" {
             songs = [
-                Song(title: "Find An Island", artist: "BENEE", genre: "Pop", album: "findanisland_album"),
-                Song(title: "Kinfolks", artist: "Sam Hunt", genre: "Pop", album: "kinfolks_album"),
-                Song(title: "Don't Start Now", artist: "Dua Lipa", genre: "Pop", album: "dontstartnow_album"),
-                Song(title: "Lucky", artist: "Chelsea Cutler", genre: "Pop", album: "lucky_album"),
-                Song(title: "Never Seen The Rain", artist: "Tones and I", genre: "Pop", album: "neverseentherain_album"),
-                Song(title: "Broke", artist: "Joji", genre: "Samm Henshaw", album: "broke_album"),
-                Song(title: "All You Need To Know", artist: "Gryffin, Slander", genre: "Pop", album: "allyouneedtoknow_album"),
-                Song(title: "Me Necesita", artist: "PRETTYMUCH", genre: "Pop", album: "menecesita_album"),
-                Song(title: "Lose You To Love Me", artist: "Selena Gomez", genre: "Pop", album: "loseyoutoloveme_album"),
-                Song(title: "Easy", artist: "Camila Cabello", genre: "Pop", album: "easy_album"),
-                Song(title: "Broke", artist: "Samm Henshaw", genre: "Pop", album: "broke_album"),
+                Song(title: "Find An Island", artist: "BENEE", genre: "Pop", album: "findanisland_album", timestamp:":07"),
+                Song(title: "Kinfolks", artist: "Sam Hunt", genre: "Pop", album: "kinfolks_album", timestamp:":36"),
+                Song(title: "Don't Start Now", artist: "Dua Lipa", genre: "Pop", album: "dontstartnow_album", timestamp:":47"),
+                Song(title: "Lucky", artist: "Chelsea Cutler", genre: "Pop", album: "lucky_album", timestamp:":00"),
+                Song(title: "Never Seen The Rain", artist: "Tones and I", genre: "Pop", album: "neverseentherain_album", timestamp:"1:07"),
+                Song(title: "Broke", artist: "Joji", genre: "Samm Henshaw", album: "broke_album", timestamp:":55"),
+                Song(title: "All You Need To Know", artist: "Gryffin, Slander", genre: "Pop", album: "allyouneedtoknow_album", timestamp:":50"),
+                Song(title: "Me Necesita", artist: "PRETTYMUCH", genre: "Pop", album: "menecesita_album", timestamp:":49"),
+                Song(title: "Lose You To Love Me", artist: "Selena Gomez", genre: "Pop", album: "loseyoutoloveme_album", timestamp:"1:07"),
+                Song(title: "Easy", artist: "Camila Cabello", genre: "Pop", album: "easy_album", timestamp:":53"),
+                Song(title: "Broke", artist: "Samm Henshaw", genre: "Pop", album: "broke_album", timestamp:":55"),
 //                Song(title: "Never Seen The Rain", artist: "Tones and I", genre: "Pop", album: "neverseentherain_album"),
-                Song(title: "Good As Hell", artist: "Lizzo", genre: "Pop", album: "goodashell_album"),
+                Song(title: "Good As Hell", artist: "Lizzo", genre: "Pop", album: "goodashell_album", timestamp:":00"),
 //                Song(title: "Good As Hell", artist: "Lizzo", genre: "Pop", album: "goodashell_album"),
-                Song(title: "Me Necesita", artist: "PRETTYMUCH", genre: "Pop", album: "menecesita_album")
+                Song(title: "Me Necesita", artist: "PRETTYMUCH", genre: "Pop", album: "menecesita_album", timestamp:":49"),
+                Song(title: "Lose Control", artist: "MEDUZA", genre: "Pop", album: "losecontrol_album", timestamp:":33"),
+                Song(title: "Photosynthesis", artist: "Saba", genre: "Pop", album: "photosynthesis_album", timestamp:":17"),
+                Song(title: "Hold It Down", artist: "Mia Gladstone", genre: "Pop", album: "holditdown_album", timestamp:"2:14"),
+                Song(title: "Bohemian Rhapsody", artist: "Queen", genre: "Pop", album: "bohemianrhapsody_album", timestamp:":53"),
+                Song(title: "Chasing Cars", artist: "Snow Patrol", genre: "Pop", album: "chasingcars_album", timestamp:":35"),
+                Song(title: "Lucky", artist: "CHOKER", genre: "Pop", album: "luckybychoker_album", timestamp:"2:20"),
+                Song(title: "Sunkissed", artist: "Khai Dreams", genre: "Pop", album: "sunkissed_album", timestamp:":37"),
+                Song(title: "Undrunk", artist: "Fletcher", genre: "Pop", album: "undrunk_album", timestamp:":50"),
+                Song(title: "Indigo", artist: "88rising & niki", genre: "Pop", album: "indigo_album", timestamp:"2:17")
             ]
         } else if genre == "Hip Hop" {
             songs = [
